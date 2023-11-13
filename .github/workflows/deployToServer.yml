@@ -23,7 +23,7 @@ jobs:
           port: 22
           script: |
             cd "/home/admin/docker/"
-            sudo docker compose stop myprojects1  
+            sudo docker compose stop myprojects1_frontend myprojects1_backend 
       #Sends compiled files to frontend.
       - name: 📂 Sync files
         uses: easingthemes/ssh-deploy@main
@@ -56,4 +56,4 @@ jobs:
           port: 22
           script: |
             cd "/home/admin/docker/"
-            sudo docker compose start myprojects1  
+            sudo docker compose stop myprojects1_frontend myprojects1_backend 
