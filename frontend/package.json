@@ -1,5 +1,5 @@
 {
-  "name": "laravel.full.api.authentication",
+  "name": "frontend",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@picocss/pico": "^1.5.10",
-    "vue": "^3.3.4"
+    "axios": "^1.6.1",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
