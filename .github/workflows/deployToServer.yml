@@ -3,57 +3,57 @@ on:
   push:
     branches: main
   workflow_dispatch:
-  jobs:
-    upload_to_sftp:
-      #Sets configuration
-      name: deploy
-      runs-on: ubuntu-latest
-      steps:
-        - name: 🚚 Get latest code
-          uses: actions/checkout@v2
-          with:
-            fetch-depth: 2
-        #Stops the containers before sendind data.
-        - name: 📂 Post Deploy
-          uses: appleboy/ssh-action@master
-          with:
-            key: ${{ secrets.NEPTUNE_KEY }}
-            host: 44.216.249.98
-            username: admin
-            port: 22
-            script: |
-              cd "/home/admin/docker/"
-              sudo docker compose stop myprojects1  
-        #Sends compiled files to frontend.
-        - name: 📂 Sync files
-          uses: easingthemes/ssh-deploy@main
-          env:
-            SSH_PRIVATE_KEY: ${{ secrets.NEPTUNE_KEY }}
-            EXCLUDE: ".env, .htaccess, .htpasswd, /vendor/*, /storage/framework/cache/*, /storage/framework/views/*, /storage/framework/sessions/*, /public/.htpasswd"
-            ARGS: "-rltgoDzvO --delete"
-            REMOTE_HOST: 44.216.249.98
-            REMOTE_USER: admin
-            SOURCE: "/frontend/dist"
-            TARGET: "/home/admin/docker/myprojects1_app/frontend"
-        #Sends files to backend.
-        - name: 📂 Sync files
-          uses: easingthemes/ssh-deploy@main
-          env:
-            SSH_PRIVATE_KEY: ${{ secrets.NEPTUNE_KEY }}
-            EXCLUDE: ".env, .htaccess, .htpasswd, /vendor/*, /storage/framework/cache/*, /storage/framework/views/*, /storage/framework/sessions/*, /public/.htpasswd"
-            ARGS: "-rltgoDzvO --delete"
-            REMOTE_HOST: 44.216.249.98
-            REMOTE_USER: admin
-            SOURCE: "/backend"
-            TARGET: "/home/admin/docker/myprojects1_app/backend"  
-        #Starts the containers after sendind data.
-        - name: 📂 Post Deploy
-          uses: appleboy/ssh-action@master
-          with:
-            key: ${{ secrets.NEPTUNE_KEY }}
-            host: 44.216.249.98
-            username: admin
-            port: 22
-            script: |
-              cd "/home/admin/docker/"
-              sudo docker compose start myprojects1  
+jobs:
+  upload_to_sftp:
+    #Sets configuration
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      #Stops the containers before sendind data.
+      - name: 📂 Post Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.NEPTUNE_KEY }}
+          host: 44.216.249.98
+          username: admin
+          port: 22
+          script: |
+            cd "/home/admin/docker/"
+            sudo docker compose stop myprojects1  
+      #Sends compiled files to frontend.
+      - name: 📂 Sync files
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.NEPTUNE_KEY }}
+          EXCLUDE: ".env, .htaccess, .htpasswd, /vendor/*, /storage/framework/cache/*, /storage/framework/views/*, /storage/framework/sessions/*, /public/.htpasswd"
+          ARGS: "-rltgoDzvO --delete"
+          REMOTE_HOST: 44.216.249.98
+          REMOTE_USER: admin
+          SOURCE: "/frontend/dist"
+          TARGET: "/home/admin/docker/myprojects1_app/frontend"
+      #Sends files to backend.
+      - name: 📂 Sync files
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.NEPTUNE_KEY }}
+          EXCLUDE: ".env, .htaccess, .htpasswd, /vendor/*, /storage/framework/cache/*, /storage/framework/views/*, /storage/framework/sessions/*, /public/.htpasswd"
+          ARGS: "-rltgoDzvO --delete"
+          REMOTE_HOST: 44.216.249.98
+          REMOTE_USER: admin
+          SOURCE: "/backend"
+          TARGET: "/home/admin/docker/myprojects1_app/backend"  
+      #Starts the containers after sendind data.
+      - name: 📂 Post Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.NEPTUNE_KEY }}
+          host: 44.216.249.98
+          username: admin
+          port: 22
+          script: |
+            cd "/home/admin/docker/"
+            sudo docker compose start myprojects1  
