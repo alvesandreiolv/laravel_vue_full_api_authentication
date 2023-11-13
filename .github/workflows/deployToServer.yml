@@ -1,0 +1,45 @@
+name: 🚀 AUTO DEPLOY TO SERVER
+on:
+  push:
+    branches: main
+    paths-ignore:
+      - ".env"
+  workflow_dispatch:
+jobs:
+  upload_to_sftp:
+    #Abaixo prepara os arquivos que serão enviados.
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      #Abaixo envia arquivos para o servidor.
+      #Repare que há uma regra para o rsync de deletar todos os arquivos estranhos no servidor, porém mantendo somente o .env e o .htaccess
+      - name: 📂 Sync files
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.NEPTUNE_KEY }}
+          EXCLUDE: ".env, .htaccess, .htpasswd, /vendor/*, /storage/framework/cache/*, /storage/framework/views/*, /storage/framework/sessions/*, /public/.htpasswd"
+          ARGS: "-rltgoDzvO --delete"
+          REMOTE_HOST: 44.216.249.98
+          REMOTE_USER: admin
+          SOURCE: "."
+          TARGET: "/home/admin/docker/laravelaevr_data"
+      #Abaixo é um recurso que permite rodar comandos no terminal via deploy.
+      #Os comandos estabelecem dono e grupo dos arquivos, assim como permissões específicas para pastas do laravel.
+      - name: 📂 Post Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.NEPTUNE_KEY }}
+          host: 44.216.249.98
+          username: admin
+          port: 22
+          script: |
+            # Estabelece que os arquivos .env e .htaccess possuem acesso muito restrito.
+            sudo chmod -R 440 "/home/admin/docker/laravelaevr_data/.env"
+            # Estabelece que os arquivos .env e .htaccess sao de propriedades do root.
+            sudo chown -R root:www-data "/home/admin/docker/laravelaevr_data/.env"
+            # Reinicia o container.
+            cd "/home/admin/docker/" && sudo docker compose restart laravelaevr
