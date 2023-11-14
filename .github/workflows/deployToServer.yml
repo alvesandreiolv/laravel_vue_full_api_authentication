@@ -33,8 +33,8 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           REMOTE_HOST: 44.216.249.98
           REMOTE_USER: admin
-          SOURCE: "/frontend/dist"
-          TARGET: "/home/admin/docker/myprojects1_app/frontend"
+          SOURCE: "/frontend/dist/"
+          TARGET: "/home/admin/docker/myprojects1_app/frontend/data"
       #Sends files to backend.
       - name: 📂 Sync files
         uses: easingthemes/ssh-deploy@main
@@ -44,7 +44,7 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           REMOTE_HOST: 44.216.249.98
           REMOTE_USER: admin
-          SOURCE: "/backend"
+          SOURCE: "/backend/"
           TARGET: "/home/admin/docker/myprojects1_app/backend"  
       #Starts the containers after sendind data.
       - name: 📂 Post Deploy
