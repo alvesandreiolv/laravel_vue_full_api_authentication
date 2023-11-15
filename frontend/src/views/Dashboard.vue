@@ -1,11 +1,14 @@
 <template>
   <nav class="container">
     <ul>
-      <li><strong>Dashboard</strong></li>
+      <li><strong></strong></li>
     </ul>
     <ul>
+      <li @click="toggleDark()" :class="{ 'dark-mode': isDark }" style="cursor: pointer;">
+        {{ isDark ? '🌞' : '🌚' }}
+      </li>
       <li><a href="#">Settings</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="/">Logout</a></li>
     </ul>
   </nav>
 
@@ -42,4 +45,6 @@
 </style>
 
 <script setup>
+//Adds toggleDark.
+import { isDark, toggleDark } from '../assets/toggleDark.js';
 </script>

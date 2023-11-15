@@ -1,4 +1,4 @@
-//import './assets/main.css'
+//Adds picocss.
 import '../node_modules/@picocss/pico/css/pico.min.css';
 
 import { createApp } from 'vue'

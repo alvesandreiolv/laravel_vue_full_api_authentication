@@ -6,8 +6,9 @@
       <p>
         The porpuse of this is to test vue routes. I can now go to login page and dashboard page.
       </p>
-      <p>
+      <p class="grid">
         <a href="/login" role="button">Go to login page</a>
+        <a href="#" @click="toggleDark()" role="button" class="contrast">Toggle dark-light mode</a>
       </p>
     </section>
   </main>
@@ -21,4 +22,6 @@
 </style>
 
 <script setup>
+//Adds toggleDark.
+import { isDark, toggleDark } from '../assets/toggleDark.js';
 </script>

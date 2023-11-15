@@ -12,12 +12,13 @@
           <input type="password" name="password" placeholder="Password" aria-label="Password"
             autocomplete="current-password" required />
           <fieldset>
-            <label for="remember">
-              <input type="checkbox" role="switch" id="remember" name="remember" />
-              Remember me
+            <label for="terms">
+              <input type="checkbox" id="terms" name="terms" v-model="isDark" />
+              Dark mode
             </label>
           </fieldset>
-          <button type="submit" class="contrast" onclick="event.preventDefault()">Login</button>
+          <!--<button type="submit" class="contrast" @click="login">Login</button>-->
+          <a href="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</a>
         </form>
       </div>
       <div></div>
@@ -31,7 +32,6 @@
 .grid {
   margin: 0 20px;
 }
-
 
 /* Grid */
 main {
@@ -119,4 +119,6 @@ body>footer {
 </style>
 
 <script setup>
+//Adds toggleDark.
+import { isDark, toggleDark } from '../assets/toggleDark.js';
 </script>
