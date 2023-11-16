@@ -11,6 +11,7 @@
     "@picocss/pico": "^1.5.10",
     "@vueuse/core": "^10.6.1",
     "axios": "^1.6.1",
+    "toastify-js": "^1.12.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
