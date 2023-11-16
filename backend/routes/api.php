@@ -19,6 +19,11 @@ use App\Http\Controllers\AuthController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
+//Adds route for retrieving CSRF token.
+Route::get('/csrf-token', function () {
+    return response()->json(['csrf_token' => csrf_token()]);
+});
+
 //If logged, return user information for testing.
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
