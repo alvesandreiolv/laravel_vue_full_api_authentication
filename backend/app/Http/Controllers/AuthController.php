@@ -13,9 +13,8 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('JWT')->plainTextToken;
-            return response()->json(['token' => $token, 'message' => 'Authenticated'], 200);
+            $request->session()->regenerate();
+            return response()->json(['message' => 'Authenticated']);
         }
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
@@ -28,5 +27,5 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return response()->json(['message' => 'Logged out']);
     }
-
+    
 }
