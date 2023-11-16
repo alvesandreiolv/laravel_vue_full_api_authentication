@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 
 //Authentication routes for API
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 //If logged, return user information for testing.
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
