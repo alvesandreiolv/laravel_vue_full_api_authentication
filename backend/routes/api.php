@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Authentication routes for API
+Route::post('/login', 'AuthController@login');
+Route::post('/logout', 'AuthController@logout')->middleware('auth:sanctum');
+
+//If logged, return user information for testing.
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Test route with public access.
 Route::get('/test', function () {
     return response()->json(['message' => 'This is a test route.']);
 });
