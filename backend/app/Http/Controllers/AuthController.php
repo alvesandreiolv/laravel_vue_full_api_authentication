@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $token = $user->createToken('JWT')->plainTextToken;
+            $token = Auth::user()->createToken('JWT')->plainTextToken;
             return response()->json(['token' => $token, 'message' => 'Authenticated'], 200);
         }
         return response()->json(['message' => 'Invalid credentials'], 401);
@@ -22,7 +22,6 @@ class AuthController extends Controller
     //Logout route for api.
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged out']);
     }
 
