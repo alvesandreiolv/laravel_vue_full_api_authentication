@@ -18,7 +18,7 @@
             </label>
           </fieldset>
           <!--<button type="submit" class="contrast" @click="login">Login</button>-->
-          <a href="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</a>
+          <router-link to="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</router-link>
         </form>
       </div>
       <div></div>

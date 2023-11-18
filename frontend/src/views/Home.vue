@@ -7,7 +7,7 @@
         The porpuse of this is to test vue routes. I can now go to login page and dashboard page.
       </p>
       <p class="grid">
-        <a href="/login" role="button">Go to login page</a>
+        <router-link to="/login" role="button">Go to login page</router-link>
         <a href="#" @click="toggleDark()" role="button" class="contrast">Toggle dark-light mode</a>
         <a href="#" @click="showNotification" role="button" class="contrast" id="testeBotao1">Test notification</a>
       </p>

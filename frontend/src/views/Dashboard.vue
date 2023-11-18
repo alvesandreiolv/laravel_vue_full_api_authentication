@@ -8,7 +8,7 @@
         {{ isDark ? '🌞' : '🌚' }}
       </li>
       <li><a href="#">Settings</a></li>
-      <li><a href="/">Logout</a></li>
+      <li><router-link to="/">Logout</router-link></li>
     </ul>
   </nav>
 
