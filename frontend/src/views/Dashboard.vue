@@ -8,7 +8,7 @@
         {{ isDark ? '🌞' : '🌚' }}
       </li>
       <li><a href="#">Settings</a></li>
-      <li><router-link to="/">Logout</router-link></li>
+      <li><router-link @click="executeLogout()" to="/login">Logout</router-link></li>
     </ul>
   </nav>
 
@@ -46,7 +46,30 @@
 
 <script setup>
 //Adds toggleDark.
-import { isDark, toggleDark } from '../assets/toggleDark.js';
-//Adds authenticatrion.
+import { isDark, toggleDark } from '../utils/toggleDark.js';
+//Adds authentication.
 import { useAuthStore } from '../stores/authentication.js';
+//Adds notification.
+import { notify } from '../utils/notification.js';
+
+// Adds authentication to variable.
+const logout = useAuthStore().logout;
+
+// Adds custom notify to variable.
+const notifyLogout = () => {
+  notify({
+    text: 'You have logged out.',
+    duration: 3000,
+    gravity: 'top',
+    position: 'right',
+    style: { background: "linear-gradient(to right, #1e88e5, #1e88e5)" }
+  });
+};
+
+// Groups all actions into the function below.
+function executeLogout() {
+  logout();
+  notifyLogout();
+}
+
 </script>

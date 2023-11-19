@@ -18,7 +18,7 @@
             </label>
           </fieldset>
           <!--<button type="submit" class="contrast" @click="login">Login</button>-->
-          <router-link @click="login" to="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</router-link>
+          <router-link @click="executeLogin()" to="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</router-link>
         </form>
       </div>
       <div></div>
@@ -120,10 +120,31 @@ body>footer {
 
 <script setup>
 //Adds toggleDark.
-import { isDark, toggleDark } from '../assets/toggleDark.js';
+import { isDark, toggleDark } from '../utils/toggleDark.js';
 //Adds authentication.
 import { useAuthStore } from '../stores/authentication.js';
+//Adds notification.
+import { notify } from '../utils/notification.js';
 
 //Adds authentication to variable.
-const login = useAuthStore().login();
+const login = useAuthStore().login;
+
+// Adds custom notify to variable.
+const notifyLogin = () => {
+  notify({
+    text: 'You are logged in.',
+    duration: 3000,
+    gravity: 'top',
+    position: 'right',
+    style: { background: "linear-gradient(to right, #43a047, #43a047)" }
+  });
+};
+
+// Groups all actions into the function below.
+function executeLogin() {
+  login();
+  notifyLogin();
+}
+
+
 </script>
