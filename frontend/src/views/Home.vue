@@ -35,7 +35,7 @@ const notifyTest = () => {
     duration: 3000,
     gravity: 'top',
     position: 'right',
-    style: { background: "linear-gradient(to right, #1e88e5, #1e88e5)" }
+    style: { background: "linear-gradient(to right, #f4511e, #fb8c00)" }
   });
 };
 
