@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import NotFound from '../views/NotFound.vue'
-import Login from '../views/Login.vue'
-import Dashboard from '../views/Dashboard.vue'
+import { useAuthStore } from '../stores/authentication.js';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,25 +7,40 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: () => import('../views/Home.vue')
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: () => import('../views/Login.vue')
     },
     {
       path: '/dashboard',
       name: 'Dashboard',
-      component: Dashboard
+      component: () => import('../views/Dashboard.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     //This page below must be at the bottom, with the lowest priority.
     {
       path: '/:pathMatch(.*)',
       name: 'NotFound',
-      component: NotFound
+      component: () => import('../views/NotFound.vue')
     }
   ]
 })
+
+//Checks in every route change if the user is logged in.
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  //If the route has "meta auth true", and authenticated is true, then go to dashboard.
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    // Redirect to login if authentication is required but user is not authenticated
+    next('/login');
+  } else {
+    next();
+  }
+});
 
 export default router

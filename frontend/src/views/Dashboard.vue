@@ -47,4 +47,6 @@
 <script setup>
 //Adds toggleDark.
 import { isDark, toggleDark } from '../assets/toggleDark.js';
+//Adds authenticatrion.
+import { useAuthStore } from '../stores/authentication.js';
 </script>

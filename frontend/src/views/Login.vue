@@ -18,7 +18,7 @@
             </label>
           </fieldset>
           <!--<button type="submit" class="contrast" @click="login">Login</button>-->
-          <router-link to="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</router-link>
+          <router-link @click="login" to="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</router-link>
         </form>
       </div>
       <div></div>
@@ -121,4 +121,9 @@ body>footer {
 <script setup>
 //Adds toggleDark.
 import { isDark, toggleDark } from '../assets/toggleDark.js';
+//Adds authentication.
+import { useAuthStore } from '../stores/authentication.js';
+
+//Adds authentication to variable.
+const login = useAuthStore().login();
 </script>
