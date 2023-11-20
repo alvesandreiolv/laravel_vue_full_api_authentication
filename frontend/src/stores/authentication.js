@@ -9,14 +9,13 @@ export const useAuthStore = defineStore('auth', {
     isAuthenticated: false,
   }),
   actions: {
-    async login(username, password) {
-      console.log(username, password);
-
-        const response = await axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/login', {
-          username,
-          password,
-        });
-      
+    login(email, password) {
+      console.log(email, password);
+      // Use the obtained CSRF token to log in
+      axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
+        email: email,
+        password: password,
+      });
       // Implement your login logic here
       this.isAuthenticated = true;
     },
