@@ -143,12 +143,13 @@ function executeLogin() {
     email: login.value,
     password: password.value,
   }).then(response => {
-    //If success...
-    console.log(response.data.token);
+    // If success...
+    // Sends to authentication token to be stored.
+    useAuthStore().login(response.data.token);
+    // Opens notification
     notify('Login successful.', 'success');
-    password.value = '';
   }).catch(error => {
-    //If error, checks the kind of error and retuns message.
+    // If error, checks the kind of error and retuns message.
     if (error.response.data.message == 'Invalid credentials') {
       notify('Login Failed: Invalid credentials.', 'warning');
     } else {
