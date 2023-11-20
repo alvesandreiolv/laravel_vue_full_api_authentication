@@ -7,9 +7,10 @@
           <h1>Sign in</h1>
           <h2>A minimalist layout for Login pages</h2>
         </hgroup>
-        <form>
-          <input type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="nickname" required />
-          <input type="password" name="password" placeholder="Password" aria-label="Password"
+        <form @submit.prevent="executeLogin">
+          <input v-model="loginData.login" type="text" name="login" placeholder="Login" aria-label="Login"
+            autocomplete="nickname" required />
+          <input v-model="loginData.password" type="password" name="password" placeholder="Password" aria-label="Password"
             autocomplete="current-password" required />
           <fieldset>
             <label for="terms">
@@ -17,8 +18,7 @@
               Dark mode
             </label>
           </fieldset>
-          <!--<button type="submit" class="contrast" @click="login">Login</button>-->
-          <router-link @click="executeLogin()" to="/dashboard" class="contrast" role="button" style="margin-bottom: 0px; width: 100%;">Login</router-link>
+          <button type="submit" class="contrast">Login</button>
         </form>
       </div>
       <div></div>
@@ -119,15 +119,15 @@ body>footer {
 </style>
 
 <script setup>
-//Adds toggleDark.
+// Adds toggleDark.
 import { isDark, toggleDark } from '../utils/toggleDark.js';
-//Adds authentication.
+// Adds authentication.
 import { useAuthStore } from '../stores/authentication.js';
-//Adds notification.
+// Adds notification.
 import { notify } from '../utils/notification.js';
 
-//Adds authentication to variable.
-const login = useAuthStore().login;
+// Adds authentication to variable.
+const { login } = useAuthStore();
 
 // Adds custom notify to variable.
 const notifyLogin = () => {
@@ -140,11 +140,14 @@ const notifyLogin = () => {
   });
 };
 
+// Data for the login form
+const loginData = {
+  login: '',
+  password: '',
+};
+
 // Groups all actions into the function below.
 function executeLogin() {
-  login();
-  notifyLogin();
+  login(loginData.login, loginData.password);
 }
-
-
 </script>
