@@ -8,10 +8,10 @@
           <h2>A minimalist layout for Login pages</h2>
         </hgroup>
         <form @submit.prevent="executeLogin">
-          <input v-model="login" type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="nickname"
-            required />
-          <input v-model="password" type="password" name="password" placeholder="Password" aria-label="Password"
-            autocomplete="current-password" required />
+          <input :disabled="isLoading" v-model="login" type="text" name="login" placeholder="Login" aria-label="Login"
+            autocomplete="nickname" required />
+          <input :disabled="isLoading" v-model="password" type="password" name="password" placeholder="Password"
+            aria-label="Password" autocomplete="current-password" required />
           <fieldset>
             <label for="terms">
               <input type="checkbox" id="terms" name="terms" v-model="isDark" />
@@ -130,13 +130,13 @@ import { useRouter } from 'vue-router';
 // Declares initial login and password fiels and make it reactive.
 const login = ref('')
 const password = ref('')
-const isLoading = ref('false')
+const isLoading = ref(false)
 // Get the router instance
 const router = useRouter();
 
 // Runs the login logic.
 function executeLogin() {
-  isLoading.value = 'true';
+  isLoading.value = true;
   // Runs the connection with api.
   axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
     email: login.value,
@@ -161,7 +161,7 @@ function executeLogin() {
     // Removes the password.
     password.value = '';
     // Stop loading effects.
-    isLoading.value = 'false';
+    isLoading.value = false;
   });
 }
 
