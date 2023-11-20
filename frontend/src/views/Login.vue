@@ -18,7 +18,7 @@
               Dark mode
             </label>
           </fieldset>
-          <button type="submit" class="contrast">Login</button>
+          <button type="submit" class="contrast" :aria-busy="isLoading">Login</button>
         </form>
       </div>
       <div></div>
@@ -133,9 +133,11 @@ import { ref } from 'vue'
 // Declares initial login and password fiels and make it reactive.
 const login = ref('')
 const password = ref('')
+const isLoading = ref('false')
 
 // Runs the login logic.
 function executeLogin() {
+  isLoading.value = 'true';
   // Runs the connection with api.
   axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
     email: login.value,
@@ -153,8 +155,11 @@ function executeLogin() {
       notify('Login Failed: Undefined.', 'warning');
     }
   }).finally(() => {
-    //Erases the password when finished.
+    // When finished...
+    // Erases the password.
     password.value = '';
+    // Stop loading effects.
+    isLoading.value = 'false';
   });
 }
 
