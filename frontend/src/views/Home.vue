@@ -24,7 +24,7 @@
 
 <script setup>
 //Adds toggleDark.
-import { isDark, toggleDark } from '../utils/toggleDark.js';
+import { toggleDark } from '../utils/toggleDark.js';
 //Adds notification.
 import { notify } from '../utils/notification.js';
 

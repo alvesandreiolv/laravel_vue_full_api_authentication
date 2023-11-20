@@ -120,14 +120,11 @@ body>footer {
 
 <script setup>
 // Adds toggleDark.
-import { isDark, toggleDark } from '../utils/toggleDark.js';
+import { isDark } from '../utils/toggleDark.js';
 // Adds authentication.
 import { useAuthStore } from '../stores/authentication.js';
 // Adds notification.
 import { notify } from '../utils/notification.js';
-
-// Adds authentication to variable.
-const { login } = useAuthStore();
 
 // Adds custom notify to variable.
 const notifyLogin = () => {
@@ -148,6 +145,6 @@ const loginData = {
 
 // Groups all actions into the function below.
 function executeLogin() {
-  login(loginData.login, loginData.password);
+  useAuthStore().login(loginData.login, loginData.password);
 }
 </script>
