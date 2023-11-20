@@ -30,6 +30,6 @@ Route::get('/test', function () {
 });
 
 //Test route with public access.
-Route::get('/test2', function () {
+Route::post('/test2', function () {
     return response()->json(['message' => 'This is a test route 2.']);
 });
