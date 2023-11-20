@@ -8,9 +8,9 @@
           <h2>A minimalist layout for Login pages</h2>
         </hgroup>
         <form @submit.prevent="executeLogin">
-          <input v-model="loginData.login" type="text" name="login" placeholder="Login" aria-label="Login"
-            autocomplete="nickname" required />
-          <input v-model="loginData.password" type="password" name="password" placeholder="Password" aria-label="Password"
+          <input v-model="login" type="text" name="login" placeholder="Login" aria-label="Login" autocomplete="nickname"
+            required />
+          <input v-model="password" type="password" name="password" placeholder="Password" aria-label="Password"
             autocomplete="current-password" required />
           <fieldset>
             <label for="terms">
@@ -125,26 +125,37 @@ import { isDark } from '../utils/toggleDark.js';
 import { useAuthStore } from '../stores/authentication.js';
 // Adds notification.
 import { notify } from '../utils/notification.js';
+// Adds Axios
+import axios from 'axios';
+// Adds ref
+import { ref } from 'vue'
 
-// Adds custom notify to variable.
-const notifyLogin = () => {
-  notify({
-    text: 'You are logged in.',
-    duration: 3000,
-    gravity: 'top',
-    position: 'right',
-    style: { background: "linear-gradient(to right, #43a047, #43a047)" }
-  });
-};
+// Declares initial login and password fiels and make it reactive.
+const login = ref('')
+const password = ref('')
 
-// Data for the login form
-const loginData = {
-  login: '',
-  password: '',
-};
-
-// Groups all actions into the function below.
+// Runs the login logic.
 function executeLogin() {
-  useAuthStore().login(loginData.login, loginData.password);
+  // Runs the connection with api.
+  axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
+    email: login.value,
+    password: password.value,
+  }).then(response => {
+    //If success...
+    console.log(response.data.token);
+    notify('Login successful.', 'success');
+    password.value = '';
+  }).catch(error => {
+    //If error, checks the kind of error and retuns message.
+    if (error.response.data.message == 'Invalid credentials') {
+      notify('Login Failed: Invalid credentials.', 'warning');
+    } else {
+      notify('Login Failed: Undefined.', 'warning');
+    }
+  }).finally(() => {
+    //Erases the password when finished.
+    password.value = '';
+  });
 }
+
 </script>

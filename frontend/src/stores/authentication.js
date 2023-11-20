@@ -6,18 +6,15 @@ export const useAuthStore = defineStore('auth', {
     isAuthenticated: false,
   }),
   actions: {
-    login(email, password) {
-      // Use the obtained CSRF token to log in
-      axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
-        email: email,
-        password: password,
-      });
-      // Assuming the token is in the response data, adjust accordingly based on your API
-      //setCookie('authToken', response.data.token, { secure: true });
+    login(token) {
       // Implement your login logic here
       this.isAuthenticated = true;
     },
-    logout() {
+    logout(token) {
+      // Implement your logout logic here
+      this.isAuthenticated = false;
+    },
+    checkAuth(token) {
       // Implement your logout logic here
       this.isAuthenticated = false;
     },
