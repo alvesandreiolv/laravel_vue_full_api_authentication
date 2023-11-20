@@ -121,19 +121,18 @@ body>footer {
 <script setup>
 // Adds toggleDark.
 import { isDark } from '../utils/toggleDark.js';
-// Adds authentication.
 import { useAuthStore } from '../stores/authentication.js';
-// Adds notification.
 import { notify } from '../utils/notification.js';
-// Adds Axios
 import axios from 'axios';
-// Adds ref
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 
 // Declares initial login and password fiels and make it reactive.
 const login = ref('')
 const password = ref('')
 const isLoading = ref('false')
+// Get the router instance
+const router = useRouter();
 
 // Runs the login logic.
 function executeLogin() {
@@ -148,16 +147,18 @@ function executeLogin() {
     useAuthStore().login(response.data.token);
     // Opens notification
     notify('Login successful.', 'success');
-  }).catch(error => {
+    // Navigate to the dashboard page
+    router.push('/dashboard');
+  }).catch(err => {
     // If error, checks the kind of error and retuns message.
-    if (error.response.data.message == 'Invalid credentials') {
+    if (err.response.data.message == 'Invalid credentials') {
       notify('Login Failed: Invalid credentials.', 'warning');
     } else {
       notify('Login Failed: Undefined.', 'warning');
     }
   }).finally(() => {
     // When finished...
-    // Erases the password.
+    // Removes the password.
     password.value = '';
     // Stop loading effects.
     isLoading.value = 'false';

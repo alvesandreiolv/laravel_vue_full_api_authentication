@@ -52,9 +52,6 @@ import { useAuthStore } from '../stores/authentication.js';
 //Adds notification.
 import { notify } from '../utils/notification.js';
 
-// Adds authentication to variable.
-const logout = useAuthStore().logout;
-
 // Adds custom notify to variable.
 const notifyLogout = () => {
   notify({
@@ -68,8 +65,8 @@ const notifyLogout = () => {
 
 // Groups all actions into the function below.
 function executeLogout() {
-  logout();
-  notifyLogout();
+  useAuthStore().logout();
+  notify('You\'re now logged out.');
 }
 
 </script>
