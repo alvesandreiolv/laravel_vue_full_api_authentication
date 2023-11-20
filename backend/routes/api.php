@@ -28,3 +28,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/test', function () {
     return response()->json(['message' => 'This is a test route.']);
 });
+
+//Test route with public access.
+Route::get('/test2', function () {
+    return response()->json(['message' => 'This is a test route.']);
+});
