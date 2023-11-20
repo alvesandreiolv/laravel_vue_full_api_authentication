@@ -1,1 +1,0 @@
-import{T as r}from"./toastify-39482613.js";const n=({text:o,duration:t=3e3,gravity:s="top",position:a="right",style:i={}})=>{r({text:o,duration:t,gravity:s,position:a,style:i}).showToast()};export{n};

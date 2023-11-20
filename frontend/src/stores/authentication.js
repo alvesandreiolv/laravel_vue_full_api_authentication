@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
+// Set Axios defaults for all requests
+axios.defaults.withCredentials = true;
+
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     isAuthenticated: false,
@@ -12,13 +15,7 @@ export const useAuthStore = defineStore('auth', {
         const response = await axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/login', {
           username,
           password,
-        },
-        {
-          headers: {
-            'Host': 'evbkzynoncxd.neptune.trulywired.link',
-          },
-        }
-      );
+        });
       
       // Implement your login logic here
       this.isAuthenticated = true;
