@@ -4,7 +4,7 @@
       <li><strong></strong></li>
     </ul>
     <ul>
-      <li @click="toggleDark()" :class="{ 'dark-mode': isDark }" style="cursor: pointer;">
+      <li @click="toggleDark()" style="cursor: pointer;">
         {{ isDark ? '🌞' : '🌚' }}
       </li>
       <li><a href="#">Settings</a></li>

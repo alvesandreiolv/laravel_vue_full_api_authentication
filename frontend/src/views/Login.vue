@@ -1,5 +1,8 @@
 <template>
   <!-- Main -->
+  <span @click="toggleDark()" id="lightSwitch" style="cursor: pointer;">
+    {{ isDark ? '🌚' : '🌞' }}
+  </span>
   <main class="container">
     <article class="grid">
       <div>
@@ -14,8 +17,8 @@
             aria-label="Password" autocomplete="current-password" required />
           <fieldset>
             <label for="terms">
-              <input type="checkbox" id="terms" name="terms" v-model="isDark" />
-              Dark mode
+              <input type="checkbox" id="terms" name="terms" />
+              Remember me
             </label>
           </fieldset>
           <button type="submit" class="contrast" :aria-busy="isLoading">Login</button>
@@ -31,6 +34,12 @@
 /* My personal below */
 .grid {
   margin: 0 20px;
+}
+
+#lightSwitch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 /* Grid */
@@ -120,7 +129,7 @@ body>footer {
 
 <script setup>
 // Adds toggleDark.
-import { isDark } from '../utils/toggleDark.js';
+import { isDark, toggleDark } from '../utils/toggleDark.js';
 import { useAuthStore } from '../stores/authentication.js';
 import { notify } from '../utils/notification.js';
 import axios from 'axios';
@@ -145,9 +154,9 @@ function executeLogin() {
     // If success...
     // Sends to authentication token to be stored.
     useAuthStore().login(response.data.token);
-    // Opens notification
+    // Opens notification.
     notify('Login successful.', 'success');
-    // Navigate to the dashboard page
+    // Navigate to the dashboard page.
     router.push('/dashboard');
   }).catch(err => {
     // If error, checks the kind of error and retuns message.
