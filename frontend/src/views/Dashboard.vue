@@ -8,7 +8,7 @@
         {{ isDark ? '🌞' : '🌚' }}
       </li>
       <li><a href="#">Settings</a></li>
-      <li><router-link @click="executeLogout()" to="/login">Logout</router-link></li>
+      <li><a @click="executeLogout()" href="#" @click.prevent>Logout</a></li>
     </ul>
   </nav>
 
@@ -47,26 +47,28 @@
 <script setup>
 //Adds toggleDark.
 import { isDark, toggleDark } from '../utils/toggleDark.js';
-//Adds authentication.
 import { useAuthStore } from '../stores/authentication.js';
-//Adds notification.
 import { notify } from '../utils/notification.js';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 
-// Adds custom notify to variable.
-const notifyLogout = () => {
-  notify({
-    text: 'You have logged out.',
-    duration: 3000,
-    gravity: 'top',
-    position: 'right',
-    style: { background: "linear-gradient(to right, #1e88e5, #1e88e5)" }
-  });
-};
+// Get the router instance
+const router = useRouter();
 
 // Groups all actions into the function below.
 function executeLogout() {
-  useAuthStore().logout();
-  notify('You\'re now logged out.');
+  // Runs logout in the server. Aks for token invalidation.
+  axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/logout`, {
+    //token: login.value
+  }).catch(err => {
+    // If logout fails
+    notify('Warning: Session was already expired.', 'warning', 5000);
+  })
+  // Runs logout locally, sends request to remove token and cookie.
+  useAuthStore().logout('please_put_token_here');
+  // Navigate to the login page.
+  router.push('/login');
+  //Shows notification
+  notify('You\'ve been logged out.');
 }
-
 </script>
