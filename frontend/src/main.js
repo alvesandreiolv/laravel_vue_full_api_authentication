@@ -1,8 +1,6 @@
 //Adds picocss.
 import '../node_modules/@picocss/pico/css/pico.min.css';
 
-//Adds toastify.
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 

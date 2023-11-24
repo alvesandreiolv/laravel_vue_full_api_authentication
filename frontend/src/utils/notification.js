@@ -1,3 +1,4 @@
+//This is to add notification sitewide.
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 

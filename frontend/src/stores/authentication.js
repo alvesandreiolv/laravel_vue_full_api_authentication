@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+//Uses modal for session expire warning.
+import { openModal } from '../utils/modal.js';
 
 export const authenticationStore = defineStore('auth', {
   state: () => ({
@@ -20,6 +22,7 @@ export const authenticationStore = defineStore('auth', {
       // You might want to check the token validity or perform other checks
       // this.isAuthenticated = /* your check logic */;
       //localStorage.setItem('isAuthenticated', this.isAuthenticated.toString());
+      //openModal(document.getElementById('modalSessionExpired'));
     },
   },
 });

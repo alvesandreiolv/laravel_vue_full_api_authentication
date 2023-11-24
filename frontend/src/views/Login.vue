@@ -136,7 +136,7 @@ summary[role="link"].secondary:is([aria-current], :hover, :active, :focus) {
 article div:nth-of-type(2) {
   display: none;
   background-color: #374956;
-  background-image: url("../assets/techGuy.jpg");
+  background-image: url("../assets/montain.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -181,7 +181,7 @@ function executeLogin() {
     // Sends to authentication token to be stored.
     authenticationStore().login(response.data.token);
     // Opens notification.
-    notify('Login successful.', 'success');
+    notify('You have logged in succefully.', 'success', 5000);
     // Navigate to the dashboard page.
     router.push('/dashboard');
   }).catch(err => {

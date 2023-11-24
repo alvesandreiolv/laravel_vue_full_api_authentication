@@ -1,4 +1,4 @@
-// darkMode.js
+// This is for adding toggle for dark/light mode sitewide.
 import { useDark, useToggle } from '@vueuse/core';
 
 const darkMode = () => {
