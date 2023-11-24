@@ -156,7 +156,7 @@ body>footer {
 <script setup>
 // Adds toggleDark.
 import { isDark, toggleDark } from '../utils/toggleDark.js';
-import { useAuthStore } from '../stores/authentication.js';
+import { authenticationStore } from '../stores/authentication.js';
 import { notify } from '../utils/notification.js';
 import axios from 'axios';
 import { ref } from 'vue'
@@ -179,7 +179,7 @@ function executeLogin() {
   }).then(response => {
     // If success...
     // Sends to authentication token to be stored.
-    useAuthStore().login(response.data.token);
+    authenticationStore().login(response.data.token);
     // Opens notification.
     notify('Login successful.', 'success');
     // Navigate to the dashboard page.

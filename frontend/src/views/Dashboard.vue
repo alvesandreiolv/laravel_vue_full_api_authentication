@@ -47,7 +47,7 @@
 <script setup>
 //Adds toggleDark.
 import { isDark, toggleDark } from '../utils/toggleDark.js';
-import { useAuthStore } from '../stores/authentication.js';
+import { authenticationStore } from '../stores/authentication.js';
 import { notify } from '../utils/notification.js';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
@@ -65,7 +65,7 @@ function executeLogout() {
     notify('Warning: Session was already expired.', 'warning', 5000);
   })
   // Runs logout locally, sends request to remove token and cookie.
-  useAuthStore().logout('please_put_token_here');
+  authenticationStore().logout('please_put_token_here');
   // Navigate to the login page.
   router.push('/login');
   //Shows notification

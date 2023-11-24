@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '../stores/authentication.js';
+import { authenticationStore } from '../stores/authentication.js';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,7 +33,7 @@ const router = createRouter({
 
 //Checks in every route change if the user is logged in.
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore();
+  const authStore = authenticationStore();
   //If the route has "meta auth true", and authenticated is true, then go to dashboard.
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     // Redirect to login if authentication is required but user is not authenticated
