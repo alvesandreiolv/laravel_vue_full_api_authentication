@@ -5,4 +5,6 @@
   <router-view></router-view>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* BELOW IS SITEWIDE CSS */
+</style>

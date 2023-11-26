@@ -26,11 +26,10 @@
 //Adds toggleDark.
 import { toggleDark } from '../utils/toggleDark.js';
 //Adds notification.
-import { notify } from '../utils/notification.js';
+import { notify } from '@/utils/notification.js';
 
 // Define a method to call notify with specific arguments
 function notifyTest() {
-  notify('This is a test notification.', 'danger');
+  notify('This is a test notification.');
 }
-
 </script>

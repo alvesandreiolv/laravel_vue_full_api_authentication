@@ -9,7 +9,7 @@
         <img src="../../assets/lightSwitch.png" alt="Light Switch">
       </li>
       <li>
-        <span class="muted">Home</span>
+        <router-link to="/home">Home</router-link>
       </li>
       <li>
         <a @click="executeLogout()" href="#" @click.prevent>Logout</a>
@@ -41,19 +41,11 @@
 
   <!-- Below is the main body for the rest of the dashboard platform -->
   <main class="container" id="docs">
-    <nav id="mainNavigator" aria-label="breadcrumb">
-      <ul>
-        <li>Home</li>
-      </ul>
-    </nav>
     <router-view />
   </main>
 </template>
 
 <style scoped>
-#mainNavigator {
-padding-bottom: 20px;
-}
 #lightSwitch {
   border-radius: 1000px;
   filter: drop-shadow(3px 3px 5px #7979798a);
@@ -85,7 +77,7 @@ padding-bottom: 20px;
 //Adds toggleDark.
 import { isDark, toggleDark } from '../../utils/toggleDark.js';
 import { authenticationStore } from '../../stores/authentication.js';
-import { notify } from '../../utils/notification.js';
+import { notify } from '@/utils/notification.js';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 

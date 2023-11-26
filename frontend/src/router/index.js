@@ -15,24 +15,39 @@ const router = createRouter({
       component: () => import('../views/Login.vue')
     },
     {
+      path: '/home',
       name: 'Dashboard',
       component: () => import('../views/dashboardViews/MainDashboard.vue'),
       children: [
         {
-          name: 'Dashboard.Home',
-          path: '/home',
+          path: '',
           component: () => import('../views/dashboardViews/Home.vue'),
         },
         {
-          name: 'Dashboard.Settings',
-          path: '/settings',
-          component: () => import('../views/dashboardViews/Settings.vue'),
-        },
-        {
-          name: 'Dashboard.MyInfo',
+          name: 'My Info',
           path: '/myinfo',
           component: () => import('../views/dashboardViews/MyInfo.vue'),
         },
+        {
+          name: 'Settings',
+          path: '/settings',
+          children: [
+            {
+              path: '',
+              component: () => import('../views/dashboardViews/settingsViews/Settings.vue'),
+            },
+            {
+              name: 'Change Password',
+              path: 'changepassword',
+              component: () => import('../views/dashboardViews/settingsViews/ChangePassword.vue'),
+            },
+            {
+              name: 'Change Username',
+              path: 'changeusername',
+              component: () => import('../views/dashboardViews/settingsViews/ChangeUsername.vue'),
+            },
+          ]
+        }
       ],
       meta: { requiresAuth: true } // Meta field for authentication at the parent level
     },

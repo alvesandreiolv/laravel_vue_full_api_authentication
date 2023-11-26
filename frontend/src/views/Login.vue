@@ -183,7 +183,7 @@ function executeLogin() {
     // Opens notification.
     notify('You have logged in succefully.', 'success', 5000);
     // Navigate to the dashboard page.
-    router.push('/home');
+    router.push('/Dashboard');
   }).catch(err => {
     // If error, checks the kind of error and retuns message.
     if (err.response.data.message == 'Invalid credentials') {

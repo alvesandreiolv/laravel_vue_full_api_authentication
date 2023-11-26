@@ -1,10 +1,53 @@
 <template>
-  <header>
-    <hgroup>
-      <h2>This is dashboard home</h2>
-      <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna
-        aliqua.</h2>
-    </hgroup>
-  </header>
+  <DashPageHeader title="Dashboard home" content="Hi, xxxxxxx. How can we help you today?" />
+
+  <div class="grid">
+    <div>
+      <router-link to="/myinfo" style="text-decoration: none; color: inherit;">
+        <button class="menuButton secondary outline">
+          <i class="fa-regular fa-user"></i> see my information
+        </button>
+      </router-link>
+    </div>
+    <div>
+      <button class="menuButton secondary outline" @click="notifyEmail">
+        <i class="fa-regular fa-envelope"></i> send test email
+      </button>
+    </div>
+    <div>
+      <router-link to="/settings" style="text-decoration: none; color: inherit;">
+        <button class="menuButton secondary outline">
+          <i class="fa-solid fa-gear"></i> change settings
+        </button>
+      </router-link>
+    </div>
+  </div>
 </template>
+
+<script setup>
+import DashPageHeader from "@/components/DashPageHeader.vue";
+import { notify } from '@/utils/notification.js';
+
+// Define a method to call notify with specific arguments
+function notifyEmail() {
+  notify('Not sent: It\'s not ready yet.', 'danger');
+}
+</script>
+
+<style>
+.menuButton {
+  transition: transform 0.1s;
+  cursor: pointer;
+  padding: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.menuButton:hover {
+  transform: perspective(800px) rotateX(7deg) rotateY(-7deg);
+}
+
+.menuButton:active {
+  transform: scale(0.9) perspective(800px) rotateX(7deg) rotateY(-7deg);
+}
+</style>

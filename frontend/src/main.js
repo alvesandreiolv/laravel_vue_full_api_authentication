@@ -1,5 +1,7 @@
 //Adds picocss.
-import '../node_modules/@picocss/pico/css/pico.min.css';
+import '@picocss/pico/css/pico.min.css';
+//Adds font-awesome.
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
