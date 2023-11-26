@@ -15,14 +15,21 @@ const router = createRouter({
       component: () => import('../views/Login.vue')
     },
     {
-      path: '/dashboard',
-      component: () => import('../views/dashboardViews/Dashboard.vue'),
+      name: 'Dashboard',
+      component: () => import('../views/dashboardViews/MainDashboard.vue'),
       children: [
         {
+          name: 'Dashboard.Home',
+          path: '/home',
+          component: () => import('../views/dashboardViews/Home.vue'),
+        },
+        {
+          name: 'Dashboard.Settings',
           path: '/settings',
           component: () => import('../views/dashboardViews/Settings.vue'),
         },
         {
+          name: 'Dashboard.MyInfo',
           path: '/myinfo',
           component: () => import('../views/dashboardViews/MyInfo.vue'),
         },

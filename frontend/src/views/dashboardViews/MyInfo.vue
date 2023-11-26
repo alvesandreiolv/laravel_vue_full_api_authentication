@@ -1,3 +1,3 @@
 <template>
-  This would be My Info page.
+  <h1>This is My Info</h1>
 </template>

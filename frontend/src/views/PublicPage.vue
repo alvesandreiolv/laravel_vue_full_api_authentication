@@ -29,14 +29,8 @@ import { toggleDark } from '../utils/toggleDark.js';
 import { notify } from '../utils/notification.js';
 
 // Define a method to call notify with specific arguments
-const notifyTest = () => {
-  notify({
-    text: 'This is a test notification',
-    duration: 3000,
-    gravity: 'top',
-    position: 'right',
-    style: { background: "linear-gradient(to right, #f4511e, #fb8c00)" }
-  });
-};
+function notifyTest() {
+  notify('This is a test notification.', 'danger');
+}
 
 </script>

@@ -41,11 +41,19 @@
 
   <!-- Below is the main body for the rest of the dashboard platform -->
   <main class="container" id="docs">
+    <nav id="mainNavigator" aria-label="breadcrumb">
+      <ul>
+        <li>Home</li>
+      </ul>
+    </nav>
     <router-view />
   </main>
 </template>
 
 <style scoped>
+#mainNavigator {
+padding-bottom: 20px;
+}
 #lightSwitch {
   border-radius: 1000px;
   filter: drop-shadow(3px 3px 5px #7979798a);
