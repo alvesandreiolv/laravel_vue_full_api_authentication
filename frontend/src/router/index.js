@@ -6,7 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'publicPage',
+      name: 'Public Page',
       component: () => import('../views/PublicPage.vue')
     },
     {
@@ -55,7 +55,7 @@ const router = createRouter({
     //This page below must be at the bottom, with the lowest priority.
     {
       path: '/:pathMatch(.*)',
-      name: 'NotFound',
+      name: 'Not Found',
       component: () => import('../views/NotFound.vue')
     }
   ]

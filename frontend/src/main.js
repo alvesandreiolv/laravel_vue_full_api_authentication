@@ -1,7 +1,9 @@
-//Adds picocss.
+// Adds picocss.
 import '@picocss/pico/css/pico.min.css';
-//Adds font-awesome.
+// Adds font-awesome.
 import '@fortawesome/fontawesome-free/css/all.min.css';
+// Adds my custom sitewide css.
+import './assets/main.css';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

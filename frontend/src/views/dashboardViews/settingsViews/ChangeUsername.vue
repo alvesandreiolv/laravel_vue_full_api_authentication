@@ -1,5 +1,5 @@
 <template>
-  <DashPageHeader title="Change username"
+  <DashPageHeader title="Change Username"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
   aeeeeeee
 </template>

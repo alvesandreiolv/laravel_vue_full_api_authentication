@@ -34,4 +34,5 @@ function notifyEmail() {
 }
 </script>
 
-<style></style>
+<style>
+</style>
