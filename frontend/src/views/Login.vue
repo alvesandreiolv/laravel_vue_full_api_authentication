@@ -181,9 +181,9 @@ function executeLogin() {
     // Sends to authentication token to be stored.
     authenticationStore().login(response.data.token);
     // Opens notification.
-    notify('You have logged in succefully.', 'success', 5000);
+    notify('You have succefully logged in.', 'success');
     // Navigate to the dashboard page.
-    router.push('/Dashboard');
+    router.push('/home');
   }).catch(err => {
     // If error, checks the kind of error and retuns message.
     if (err.response.data.message == 'Invalid credentials') {

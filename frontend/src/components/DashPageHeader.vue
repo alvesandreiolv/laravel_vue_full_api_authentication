@@ -5,9 +5,9 @@
       <!-- Starts the for for looping the options -->
       <template v-for="(item, index) in breadcrumbs" :key="index">
         <!-- a. -->
-        <router-link :to="item.path" v-if="item.text !== undefined">
-          <li>{{ item.text }}</li>
-        </router-link>
+        <template v-if="item.text !== undefined">
+          <li><router-link :to="item.path">{{ item.text }}</router-link></li>
+        </template>
       </template>
     </ul>
   </nav>

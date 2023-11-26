@@ -34,20 +34,4 @@ function notifyEmail() {
 }
 </script>
 
-<style>
-.menuButton {
-  transition: transform 0.1s;
-  cursor: pointer;
-  padding: 10px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.menuButton:hover {
-  transform: perspective(800px) rotateX(7deg) rotateY(-7deg);
-}
-
-.menuButton:active {
-  transform: scale(0.9) perspective(800px) rotateX(7deg) rotateY(-7deg);
-}
-</style>
+<style></style>

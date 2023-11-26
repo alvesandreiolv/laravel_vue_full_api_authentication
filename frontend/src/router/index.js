@@ -14,9 +14,10 @@ const router = createRouter({
       name: 'Login',
       component: () => import('../views/Login.vue')
     },
+    //Below are all internal dashboard pages
     {
       path: '/home',
-      name: 'Dashboard',
+      name: 'Home',
       component: () => import('../views/dashboardViews/MainDashboard.vue'),
       children: [
         {

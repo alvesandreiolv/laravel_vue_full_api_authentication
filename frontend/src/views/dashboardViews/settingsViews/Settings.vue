@@ -1,5 +1,5 @@
 <template>
-  <DashPageHeader title="Settings" content="What settings would you like to change?" />
+  <DashPageHeader title="Settings" content="What would you like to change?" />
 
   <div class="grid">
     <router-link to="/settings/changeusername" style="text-decoration: none; color: inherit;">
