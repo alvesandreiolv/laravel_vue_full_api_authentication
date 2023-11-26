@@ -6,8 +6,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: () => import('../views/Home.vue')
+      name: 'publicPage',
+      component: () => import('../views/PublicPage.vue')
     },
     {
       path: '/login',
@@ -16,11 +16,18 @@ const router = createRouter({
     },
     {
       path: '/dashboard',
-      name: 'Dashboard',
-      component: () => import('../views/Dashboard.vue'),
-      meta: {
-        requiresAuth: true
-      }
+      component: () => import('../views/dashboardViews/Dashboard.vue'),
+      children: [
+        {
+          path: '/settings',
+          component: () => import('../views/dashboardViews/Settings.vue'),
+        },
+        {
+          path: '/myinfo',
+          component: () => import('../views/dashboardViews/MyInfo.vue'),
+        },
+      ],
+      meta: { requiresAuth: true } // Meta field for authentication at the parent level
     },
     //This page below must be at the bottom, with the lowest priority.
     {

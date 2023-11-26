@@ -6,35 +6,16 @@
     </ul>
     <ul>
       <li class="contrast" @click="toggleDark()" id="lightSwitch">
-        <img src="../assets/lightSwitch.png" alt="Light Switch">
+        <img src="../../assets/lightSwitch.png" alt="Light Switch">
+      </li>
+      <li>
+        <span class="muted">Home</span>
       </li>
       <li>
         <a @click="executeLogout()" href="#" @click.prevent>Logout</a>
       </li>
     </ul>
   </nav>
-
-  <!-- Main dashboard content below. -->
-  <main class="container" id="docs">
-    <nav aria-label="breadcrumb">
-      <ul>
-        <li><a href="#">Start</a></li>
-        <li>Page</li>
-      </ul>
-    </nav>
-    <hr>
-    <header>
-      <hgroup>
-        <h1>Pico</h1>
-        <h2>A starter example with all elements and components used in Pico design system.</h2>
-      </hgroup>
-    </header>
-    <a href="#">Page example 1</a>
-    <br>
-    <a href="#">Page example 2</a>
-    <br>
-    <a href="#">Page example 3</a>
-  </main>
 
   <!-- Below is the session expired modal that will be available in all places inside the dashboard. -->
   <dialog id="modalSessionExpired">
@@ -43,7 +24,7 @@
         You session has expired.
       </h3>
       <p id="modalSessionExpiredMainText">
-        It's been detected that your session has expired. You need to login in again in order to continue using this
+        It's been detected that your session is no longer valid. You need to login again in order to continue using this
         service.
       </p>
       <footer>
@@ -57,14 +38,14 @@
       </footer>
     </article>
   </dialog>
+
+  <!-- Below is the main body for the rest of the dashboard platform -->
+  <main class="container" id="docs">
+    <router-view />
+  </main>
 </template>
 
 <style scoped>
-#mainContainer {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
 #lightSwitch {
   border-radius: 1000px;
   filter: drop-shadow(3px 3px 5px #7979798a);
@@ -94,9 +75,9 @@
 
 <script setup>
 //Adds toggleDark.
-import { isDark, toggleDark } from '../utils/toggleDark.js';
-import { authenticationStore } from '../stores/authentication.js';
-import { notify } from '../utils/notification.js';
+import { isDark, toggleDark } from '../../utils/toggleDark.js';
+import { authenticationStore } from '../../stores/authentication.js';
+import { notify } from '../../utils/notification.js';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
