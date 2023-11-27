@@ -1,6 +1,6 @@
 <!-- MyComponent.vue -->
 <template>
-  <nav id="mainNavigator" aria-label="breadcrumb">
+  <nav aria-label="breadcrumb">
     <ul>
       <!-- Starts the for for looping the options -->
       <template v-for="(item, index) in breadcrumbs" :key="index">
@@ -40,8 +40,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#mainNavigator {
-  padding-bottom: 20px;
-}
-</style>
+<style scoped></style>

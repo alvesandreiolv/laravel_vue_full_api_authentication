@@ -17,7 +17,7 @@
     <div>
       <router-link to="/settings" style="text-decoration: none; color: inherit;">
         <button class="menuButton secondary outline">
-          <i class="fa-solid fa-gear"></i> change settings
+          <i class="fa-regular fa-id-card"></i> change settings
         </button>
       </router-link>
     </div>
@@ -34,5 +34,4 @@ function notifyEmail() {
 }
 </script>
 
-<style>
-</style>
+<style></style>

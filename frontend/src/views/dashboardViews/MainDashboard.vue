@@ -9,9 +9,6 @@
         <img src="../../assets/lightSwitch.png" alt="Light Switch">
       </li>
       <li>
-        <router-link to="/home">Home</router-link>
-      </li>
-      <li>
         <a @click="executeLogout()" href="#" @click.prevent>Logout</a>
       </li>
     </ul>
