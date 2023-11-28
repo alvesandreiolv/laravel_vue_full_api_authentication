@@ -1,6 +1,5 @@
 <template>
-  <DashPageHeader title="This is My Info"
-    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+  <DashPageHeader title="My information" content="This below is information regarding your account." />
 </template>
 
 <script setup>
