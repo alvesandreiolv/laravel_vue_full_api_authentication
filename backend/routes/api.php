@@ -20,7 +20,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 //If has the token, return user information for testing.
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
     return $request->user();
 });
 

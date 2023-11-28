@@ -16,7 +16,7 @@ async function login(email, password) {
     //Gives browser permission to access the dashboard.
     localStorage.setItem('isAuthenticated', 'true');
     //Sets in the browser a super secure cookie that holds authentication token.
-    Cookies.set('authToken', response.data.token, { secure: true, httpOnly: true, expires: 7, sameSite: 'Strict' });
+    Cookies.set('Authorization', response.data.token, { secure: true, httpOnly: true, sameSite: 'none' });
     //Navigate to the dashboard page.
     router.push('/home');
     //Opens notification.
@@ -37,7 +37,7 @@ function logout() {
   //IRevokes browser permission to the dashboard.
   localStorage.setItem('isAuthenticated', 'false');
   //Removes authentication token from browser.
-  Cookies.remove('authToken');
+  Cookies.remove('Authorization');
   //Navigate to the login page.
   router.push('/login');
   //Sends notification.
@@ -45,7 +45,7 @@ function logout() {
 }
 
 function getAuthToken() {
-  return Cookies.get('authToken');
+  return Cookies.get('Authorization');
 }
 
 export { login, logout, getAuthToken };

@@ -18,8 +18,8 @@ const email = ref('')
 username.value = '...';
 email.value = '...';
 
-axios.get('https://evbkzynoncxd.neptune.trulywired.link/api/user', {
-  withCredentials: true, // Include cookies in the request
+axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/user', {
+  withCredentials: true,
 }).then(response => {
   console.log(response.data);
 }).catch(error => {
