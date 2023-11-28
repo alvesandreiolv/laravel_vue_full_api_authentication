@@ -20,9 +20,12 @@ email.value = '...';
 
 axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/user', {
   withCredentials: true,
+  headers: {
+    'Authorization': `Bearer ${Cookies.get('authToken')}`
+  },
 }).then(response => {
   console.log(response.data);
 }).catch(error => {
-  console.error('Request failed:', error);
+  console.log('Request failed:', error);
 });
 </script>
