@@ -1,7 +1,7 @@
 <template>
   <!-- Main -->
   <span class="contrast" @click="toggleDark()" id="lightSwitch">
-    <img src="../assets/lightSwitch.png" alt="Light Switch">
+    <img src="../assets/images/lightSwitch.png" alt="Light Switch">
   </span>
   <main class="container">
     <article class="grid">
@@ -11,7 +11,7 @@
           <h2>A minimalist layout for Login pages</h2>
         </hgroup>
         <form @submit.prevent="executeLogin">
-          <input :disabled="isLoading" v-model="login" type="text" name="login" placeholder="Login" aria-label="Login"
+          <input :disabled="isLoading" v-model="email" type="text" name="email" placeholder="Login" aria-label="Login"
             autocomplete="nickname" required />
           <input :disabled="isLoading" v-model="password" type="password" name="password" placeholder="Password"
             aria-label="Password" autocomplete="current-password" required />
@@ -136,7 +136,7 @@ summary[role="link"].secondary:is([aria-current], :hover, :active, :focus) {
 article div:nth-of-type(2) {
   display: none;
   background-color: #374956;
-  background-image: url("../assets/montain.jpg");
+  background-image: url("../assets/images/montain.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -154,50 +154,23 @@ body>footer {
 </style>
 
 <script setup>
-// Adds toggleDark.
-import { isDark, toggleDark } from '../utils/toggleDark.js';
-import { authenticationStore } from '../stores/authentication.js';
-import { notify } from '../utils/notification.js';
-import axios from 'axios';
+import { login } from '@/services/authenticator.js';
+import { toggleDark } from '@/helpers/toggleDark.js';
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
 
 // Declares initial login and password fiels and make it reactive.
-const login = ref('')
+const email = ref('')
 const password = ref('')
 const isLoading = ref(false)
-// Get the router instance
-const router = useRouter();
 
-// Runs the login logic.
-function executeLogin() {
-  isLoading.value = true;
-  // Runs the connection with api.
-  axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
-    email: login.value,
-    password: password.value,
-  }).then(response => {
-    // If success...
-    // Sends to authentication token to be stored.
-    authenticationStore().login(response.data.token);
-    // Opens notification.
-    notify('You have succefully logged in.', 'success');
-    // Navigate to the dashboard page.
-    router.push('/home');
-  }).catch(err => {
-    // If error, checks the kind of error and retuns message.
-    if (err.response.data.message == 'Invalid credentials') {
-      notify('Login Failed: Invalid credentials.', 'warning');
-    } else {
-      notify('Login Failed: Undefined.', 'warning');
-    }
-  }).finally(() => {
-    // When finished...
-    // Removes the password.
+// Below, starts loading animation and try to login.
+async function executeLogin() {
+  try {
+    isLoading.value = true;
+    await login(email.value, password.value);
+  } finally {
     password.value = '';
-    // Stop loading effects.
     isLoading.value = false;
-  });
+  }
 }
-
 </script>

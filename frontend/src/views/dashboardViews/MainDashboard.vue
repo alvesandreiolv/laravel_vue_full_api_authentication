@@ -6,7 +6,7 @@
     </ul>
     <ul>
       <li class="contrast" @click="toggleDark()" id="lightSwitch">
-        <img src="../../assets/lightSwitch.png" alt="Light Switch">
+        <img src="../../assets/images/lightSwitch.png" alt="Light Switch">
       </li>
       <li>
         <a @click="executeLogout()" href="#" @click.prevent>Logout</a>
@@ -72,30 +72,11 @@
 
 <script setup>
 //Adds toggleDark.
-import { isDark, toggleDark } from '../../utils/toggleDark.js';
-import { authenticationStore } from '../../stores/authentication.js';
-import { notify } from '@/utils/notification.js';
-import axios from 'axios';
-import { useRouter } from 'vue-router';
-
-// Get the router instance
-const router = useRouter();
+import { isDark, toggleDark } from '@/helpers/toggleDark.js';
+import { logout } from '@/services/authenticator.js';
 
 // Groups all actions into the function below.
 function executeLogout() {
-  // Runs logout in the server. Aks for token invalidation.
-  axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/logout`, {
-    //token: login.value
-  }).catch(err => {
-    // If logout fails
-    notify('Warning: Session was already expired.', 'warning', 5000);
-  })
-  // Runs logout locally, sends request to remove token and cookie.
-  authenticationStore().logout('please_put_token_here');
-  // Navigate to the login page.
-  router.push('/login');
-  //Shows notification
-  notify('You\'ve been logged out.');
-  //authenticationStore().openModalForTests();
+  console.log('remember me!');
 }
 </script>

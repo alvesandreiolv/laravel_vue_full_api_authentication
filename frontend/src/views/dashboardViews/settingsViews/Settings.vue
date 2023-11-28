@@ -19,11 +19,11 @@
 
 <script setup>
 import DashPageHeader from "@/components/DashPageHeader.vue";
-import { notify } from '@/utils/notification.js';
+import { notify } from '@/services/notificator.js';
 
 // Define a method to call notify with specific arguments
 function notifyDelete() {
-  notify('Nothing happened: It\'s not ready yet.', 'danger', 5000);
+  notify('Nothing happened: It\'s not ready yet.', 'danger');
 }
 </script>
 
