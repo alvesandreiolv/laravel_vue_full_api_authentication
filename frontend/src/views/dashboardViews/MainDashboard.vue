@@ -77,6 +77,6 @@ import { logout } from '@/services/authenticator.js';
 
 // Groups all actions into the function below.
 function executeLogout() {
-  console.log('remember me!');
+  logout();
 }
 </script>

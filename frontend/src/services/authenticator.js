@@ -44,8 +44,8 @@ function logout() {
   notify('You\'ve been logged out.');
 }
 
-function returnToken() {
+function getAuthToken() {
   return Cookies.get('authToken');
 }
 
-export { login, logout, returnToken };
+export { login, logout, getAuthToken };
