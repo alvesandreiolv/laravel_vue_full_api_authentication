@@ -17,7 +17,7 @@ class AuthController extends Controller
             $token = Auth::user()->createToken('JWT')->plainTextToken;
 
             // Create an HTTP-only cookie with the token
-            $cookie = cookie('auth_token', $token, 60)->sameSite('None')->disableSecure();
+            $cookie = cookie('auth_token', $token, 60)->sameSite('None')->disableSecure()->unavailableForHttp();
 
             // Attach the cookie to the response
             return response()->json(['token' => $token, 'message' => 'Authenticated'], 200)->cookie($cookie);
