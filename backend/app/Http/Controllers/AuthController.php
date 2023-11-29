@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -14,7 +15,12 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $token = Auth::user()->createToken('JWT')->plainTextToken;
-            return response()->json(['token' => $token, 'message' => 'Authenticated'], 200);
+
+            // Create an HTTP-only cookie with the token
+            $cookie = cookie('auth_token', $token, 60); // 60 minutes expiration, adjust as needed
+
+            // Attach the cookie to the response
+            return response()->json(['token' => $token, 'message' => 'Authenticated'], 200)->cookie($cookie);
         }
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
