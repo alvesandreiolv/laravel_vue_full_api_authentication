@@ -12,6 +12,9 @@ async function login(email, password) {
   await axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
     email: email,
     password: password,
+  }, {
+    //AxiosRequestConfig parameter
+    withCredentials: true //correct
   }).then(response => {
     //Gives browser permission to access the dashboard.
     localStorage.setItem('isAuthenticated', 'true');
