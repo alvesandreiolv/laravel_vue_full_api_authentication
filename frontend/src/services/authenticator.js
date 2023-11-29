@@ -16,7 +16,7 @@ async function login(email, password) {
     //Gives browser permission to access the dashboard.
     localStorage.setItem('isAuthenticated', 'true');
     //Sets in the browser a super secure cookie that holds authentication token.
-    Cookies.set('authToken', response.data.token, { httpOnly: true, sameSite: 'None' });
+    //Cookies.set('authToken', response.data.token, { httpOnly: true, sameSite: 'None' });
     //Navigate to the dashboard page.
     router.push('/home');
     //Opens notification.

@@ -24,9 +24,9 @@
 
 <script setup>
 //Adds toggleDark.
-import { toggleDark } from '../utils/toggleDark.js';
+import { toggleDark } from '../helpers/toggleDark.js';
 //Adds notification.
-import { notify } from '@/utils/notification.js';
+import { notify } from '@/services/notificator.js';
 
 // Define a method to call notify with specific arguments
 function notifyTest() {
