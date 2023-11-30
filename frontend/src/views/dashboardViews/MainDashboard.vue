@@ -21,8 +21,7 @@
         You session has expired.
       </h3>
       <p id="modalSessionExpiredMainText">
-        It's been detected that your session is no longer valid. You need to login again in order to continue using this
-        service.
+        It appears that your authentication is no longer valid. To continue using this service, please log in again.
       </p>
       <footer>
         <a id="modalSessionExpiredCancelButton" href="#" role="button" class="secondary" data-target="modal-example"

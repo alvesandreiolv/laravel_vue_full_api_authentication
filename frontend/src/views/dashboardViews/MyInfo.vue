@@ -1,7 +1,6 @@
 <template>
   <DashPageHeader title="My information" content="This below is information regarding your account." />
-
-  Username: {{ username }}
+  Name: {{ name }}
   <br>
   Email: {{ email }}
 </template>
@@ -13,10 +12,10 @@ import { getToken, checkToken } from '@/services/authenticator.js';
 import DashPageHeader from "@/components/DashPageHeader.vue";
 import { ref } from 'vue'
 
-const username = ref('')
+const name = ref('')
 const email = ref('')
 
-username.value = '...';
+name.value = '...';
 email.value = '...';
 
 axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
@@ -25,11 +24,11 @@ axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   }
 }).then(response => {
   //If returns data, replace username and email.
-  username.value = response.data.name;
+  name.value = response.data.name;
   email.value = response.data.email;
 }).catch(error => {
   //If not, deals with the error and replace username and email.
-  username.value = 'Error';
+  name.value = 'Error';
   email.value = 'Error';
   //If is authorization error, checks.
   checkToken();

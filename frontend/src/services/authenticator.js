@@ -38,15 +38,17 @@ function logout() {
     headers: {
       'Authorization': 'Bearer ' + getToken(),
     }
+  }).then(response => {
+    //Sends success notification.
+    notify('You\'ve been logged out.');
   }).catch(err => {
-    notify('Your session was already expired.', 'warning', 5000);
+    notify('Logout failed: Your session may already be expired.', 'warning', 5000);
   })
-  //Removes authentication token from browser.
+  //Removes auth token from browser.
   localStorage.removeItem(authTokenName);
   //Navigate to the login page.
   router.push('/login');
-  //Sends notification.
-  notify('You\'ve been logged out.');
+
 }
 
 //To retrieve only the authentication token.
@@ -56,13 +58,19 @@ function getToken() {
 
 //To check if token is still valid
 function checkToken() {
-  //Tries logout in the server. 
+  //Will check in the serve if user is indeed logged. 
   axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/checkauth', {
     headers: {
       'Authorization': 'Bearer ' + getToken(),
     }
+  }).then(response => {
+    //console.log(response.data)
   }).catch(err => {
-    console.log(err)
+    //If the token is not valid anymore
+    //Removes auth token from browser.
+    localStorage.removeItem(authTokenName);
+    //Show the modal.
+    openModal(document.getElementById('modalSessionExpired'));
   })
 }
 
