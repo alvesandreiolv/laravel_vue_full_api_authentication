@@ -7,10 +7,11 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+import { getAuthToken } from '@/services/authenticator.js';
+
 import DashPageHeader from "@/components/DashPageHeader.vue";
 import { ref } from 'vue'
-import axios from 'axios';
-import Cookies from 'js-cookie';
 
 const username = ref('')
 const email = ref('')
@@ -18,11 +19,15 @@ const email = ref('')
 username.value = '...';
 email.value = '...';
 
-axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/user', {
-  //asdasd
+axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/user', {}, {
+  headers: {
+    'Authorization': 'Bearer ' + getAuthToken(),
+  }
 }).then(response => {
-  console.log(response.data);
+  username.value = response.data.name;
+  email.value = response.data.email;
 }).catch(error => {
-  console.log('Request failed:', error);
+  username.value = 'Error';
+  email.value = 'Error';
 });
 </script>

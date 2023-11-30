@@ -65,7 +65,7 @@ const router = createRouter({
 //Checks in every route change if the user is logged in.
 router.beforeEach((to, from, next) => {
   //If the route requires AUTH, and isAuthenticated is NOT true, then go to login.
-  if (to.meta.requiresAuth && (localStorage.getItem('isAuthenticated') !== 'true')) {
+  if (to.meta.requiresAuth && (localStorage.getItem('authToken') == null)) {
     next('/login');
   } else {
     //If not, so proceed to the route.

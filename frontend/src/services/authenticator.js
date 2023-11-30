@@ -7,16 +7,13 @@ import router from '@/router/index.js';
 
 //Login receives only the token, given that the request management is done in the components/views.
 async function login(email, password) {
-
   //Tries to connect via API to retrieve the token. 
   await axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
     email: email,
     password: password,
   }).then(response => {
-    //Gives browser permission to access the dashboard.
-    localStorage.setItem('isAuthenticated', 'true');
-    //Sets in the browser a super secure cookie that holds authentication token.
-    //Cookies.set('authToken', response.data.token, { httpOnly: true, sameSite: 'None' });
+    //Stores the token in a super secure local storage.
+    localStorage.setItem('authToken', encryptString(response.data.token));
     //Navigate to the dashboard page.
     router.push('/home');
     //Opens notification.
@@ -30,22 +27,30 @@ async function login(email, password) {
       console.log(err)
     }
   })
-
 }
 
+//To logout and revoke the token from front and back end.
 function logout() {
-  //IRevokes browser permission to the dashboard.
-  localStorage.setItem('isAuthenticated', 'false');
   //Removes authentication token from browser.
-  Cookies.remove('authToken');
+  localStorage.removeItem('authToken');
   //Navigate to the login page.
   router.push('/login');
   //Sends notification.
   notify('You\'ve been logged out.');
 }
 
+//To retrieve only the authentication token.
 function getAuthToken() {
-  return Cookies.get('authToken');
+  return decryptString(localStorage.getItem('authToken'));
+}
+
+//For easy encripting made by chatgpt.
+function encryptString(text, shift = 9) {
+  return btoa(text.replace(/[a-z]/gi, char => String.fromCharCode((char.charCodeAt(0) - (char < "a" ? 65 : 97) + shift) % 26 + (char < "a" ? 65 : 97))));
+}
+//For easy decripting made by chatgpt.
+function decryptString(encodedText, shift = 9) {
+  return atob(encodedText).replace(/[a-z]/gi, char => String.fromCharCode((char.charCodeAt(0) - (char < "a" ? 65 : 97) - shift + 26) % 26 + (char < "a" ? 65 : 97)));
 }
 
 export { login, logout, getAuthToken };
