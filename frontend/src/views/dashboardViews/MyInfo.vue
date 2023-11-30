@@ -19,7 +19,7 @@ username.value = '...';
 email.value = '...';
 
 axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/user', {
-  withCredentials: true,
+  //asdasd
 }).then(response => {
   console.log(response.data);
 }).catch(error => {
