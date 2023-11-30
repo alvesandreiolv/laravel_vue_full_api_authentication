@@ -21,14 +21,20 @@ email.value = '...';
 
 axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {}, {
   headers: {
-    'Authorization': 'Bearer ' + getAuthToken(),
+    'Authorization': 'Bearerx ' + getAuthToken(),
   }
 }).then(response => {
+  //If returns data, replace username and email.
   username.value = response.data.name;
   email.value = response.data.email;
 }).catch(error => {
+  //If not, deals with the error and replace username and email.
   username.value = 'Error';
   email.value = 'Error';
+  //If is authorization error, checks.
+  //if (error.response.status == 401) {
+//
+  //}
 });
 
 </script>
