@@ -57,7 +57,7 @@ function getToken() {
 //To check if token is still valid
 function checkToken() {
   //Tries logout in the server. 
-  axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/checkauth', {
+  axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/checkauth', {
     headers: {
       'Authorization': 'Bearer ' + getToken(),
     }
