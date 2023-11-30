@@ -19,7 +19,7 @@ const email = ref('')
 username.value = '...';
 email.value = '...';
 
-axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/user', {}, {
+axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {}, {
   headers: {
     'Authorization': 'Bearer ' + getAuthToken(),
   }
@@ -30,4 +30,5 @@ axios.post('https://evbkzynoncxd.neptune.trulywired.link/api/user', {}, {
   username.value = 'Error';
   email.value = 'Error';
 });
+
 </script>

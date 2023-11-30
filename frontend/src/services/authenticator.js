@@ -1,19 +1,21 @@
 //Uses modal for session expire warning.
 import { openModal } from '../helpers/modal.js';
-import Cookies from 'js-cookie';
 import { notify } from '@/services/notificator.js';
 import axios from 'axios';
 import router from '@/router/index.js';
 
+//To not make show up authentication token name in console.
+const authTokenName = import.meta.env.VITE_AUTHTOKEN_NAME;
+
 //Login receives only the token, given that the request management is done in the components/views.
 async function login(email, password) {
   //Tries to connect via API to retrieve the token. 
-  await axios.post(`https://evbkzynoncxd.neptune.trulywired.link/api/login`, {
+  await axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/login', {
     email: email,
     password: password,
   }).then(response => {
     //Stores the token in a super secure local storage.
-    localStorage.setItem('authToken', encryptString(response.data.token));
+    localStorage.setItem(authTokenName, encryptString(response.data.token));
     //Navigate to the dashboard page.
     router.push('/home');
     //Opens notification.
@@ -32,7 +34,7 @@ async function login(email, password) {
 //To logout and revoke the token from front and back end.
 function logout() {
   //Removes authentication token from browser.
-  localStorage.removeItem('authToken');
+  localStorage.removeItem(authTokenName);
   //Navigate to the login page.
   router.push('/login');
   //Sends notification.
@@ -41,7 +43,7 @@ function logout() {
 
 //To retrieve only the authentication token.
 function getAuthToken() {
-  return decryptString(localStorage.getItem('authToken'));
+  return decryptString(localStorage.getItem(authTokenName));
 }
 
 //For easy encripting made by chatgpt.
