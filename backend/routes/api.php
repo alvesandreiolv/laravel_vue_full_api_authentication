@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +24,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // If the user has the token, return user information for testing.
-    Route::get('/user', function (Request $request) {
+    Route::get('/checkauth', function () {
+        return 'You are authenticated.';
+    });
+
+    // If the user has the token, return user information for testing.
+    Route::get('/user', function () {
         return $request->user();
     });
 

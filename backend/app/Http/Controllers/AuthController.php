@@ -24,7 +24,7 @@ class AuthController extends Controller
     //Logout route for api.
     public function logout(Request $request)
     {
-        //Revoke the user's token.
+        //Delete ALL user tokens, thus revoking his access.
         $request->user()->tokens()->delete();
         //Returns successful logout message.
         return response()->json(['message' => 'Logged out']);

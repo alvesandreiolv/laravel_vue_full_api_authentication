@@ -36,7 +36,7 @@ function logout() {
   //Tries logout in the server. 
   axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/logout', {}, {
     headers: {
-      'Authorization': 'Bearer ' + getAuthToken(),
+      'Authorization': 'Bearer ' + getToken(),
     }
   }).catch(err => {
     notify('Your session was already expired.', 'warning', 5000);
@@ -50,8 +50,20 @@ function logout() {
 }
 
 //To retrieve only the authentication token.
-function getAuthToken() {
+function getToken() {
   return decryptString(localStorage.getItem(authTokenName));
+}
+
+//To check if token is still valid
+function checkToken() {
+  //Tries logout in the server. 
+  axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/checkauth', {
+    headers: {
+      'Authorization': 'Bearer ' + getToken(),
+    }
+  }).catch(err => {
+    console.log(err)
+  })
 }
 
 //For easy encripting made by chatgpt.
@@ -63,4 +75,4 @@ function decryptString(encodedText, shift = 9) {
   return atob(encodedText).replace(/[a-z]/gi, char => String.fromCharCode((char.charCodeAt(0) - (char < "a" ? 65 : 97) - shift + 26) % 26 + (char < "a" ? 65 : 97)));
 }
 
-export { login, logout, getAuthToken };
+export { login, logout, getToken, checkToken };

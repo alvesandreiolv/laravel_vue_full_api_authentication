@@ -8,7 +8,7 @@
 
 <script setup>
 import axios from 'axios';
-import { getAuthToken } from '@/services/authenticator.js';
+import { getToken, checkToken } from '@/services/authenticator.js';
 
 import DashPageHeader from "@/components/DashPageHeader.vue";
 import { ref } from 'vue'
@@ -21,7 +21,7 @@ email.value = '...';
 
 axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   headers: {
-    'Authorization': 'Bearer ' + getAuthToken(),
+    'Authorization': 'Bearer ' + getToken(),
   }
 }).then(response => {
   //If returns data, replace username and email.
@@ -32,9 +32,7 @@ axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   username.value = 'Error';
   email.value = 'Error';
   //If is authorization error, checks.
-  if (error.response.status == 401) {
-
-  }
+  checkToken();
 });
 
 </script>
