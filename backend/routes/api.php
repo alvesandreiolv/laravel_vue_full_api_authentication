@@ -26,7 +26,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     // If the user has the token, return user information for testing.
     Route::get('/checkauth', function (Request $request) {
-        return $request->user();
+        return 'You are authenticated.';
     });
 
     // If the user has the token, return user information for testing.
