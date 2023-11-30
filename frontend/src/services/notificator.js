@@ -7,7 +7,7 @@ const notify = (text, style, duration = 3000, gravity = 'top', position = 'right
   if (style == 'success') {
     style = { background: "linear-gradient(to right, #43a047, #43a047)" }
   } else if (style == 'warning') {
-    style = { background: "linear-gradient(to right, #fb8c00, #fb8c00)" }
+    style = { background: "linear-gradient(to right, #f4511e, #f4511e)" }
   } else if (style == 'danger') {
     style = { background: "linear-gradient(to right, #d81b60, #d81b60)" }
   } else {

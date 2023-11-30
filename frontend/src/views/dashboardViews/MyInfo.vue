@@ -19,7 +19,7 @@ const email = ref('')
 username.value = '...';
 email.value = '...';
 
-axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {}, {
+axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   headers: {
     'Authorization': 'Bearer ' + getAuthToken(),
   }
@@ -32,9 +32,9 @@ axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {}, {
   username.value = 'Error';
   email.value = 'Error';
   //If is authorization error, checks.
-  //if (error.response.status == 401) {
-//
-  //}
+  if (error.response.status == 401) {
+
+  }
 });
 
 </script>

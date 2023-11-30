@@ -33,12 +33,6 @@ async function login(email, password) {
 
 //To logout and revoke the token from front and back end.
 function logout() {
-  //Removes authentication token from browser.
-  localStorage.removeItem(authTokenName);
-  //Navigate to the login page.
-  router.push('/login');
-  //Sends notification.
-  notify('You\'ve been logged out.');
   //Tries logout in the server. 
   axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/logout', {}, {
     headers: {
@@ -47,6 +41,12 @@ function logout() {
   }).catch(err => {
     notify('Your session was already expired.', 'warning', 5000);
   })
+  //Removes authentication token from browser.
+  localStorage.removeItem(authTokenName);
+  //Navigate to the login page.
+  router.push('/login');
+  //Sends notification.
+  notify('You\'ve been logged out.');
 }
 
 //To retrieve only the authentication token.
