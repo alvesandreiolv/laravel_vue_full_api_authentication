@@ -39,6 +39,14 @@ function logout() {
   router.push('/login');
   //Sends notification.
   notify('You\'ve been logged out.');
+  //Tries logout in the server. 
+  axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/logout', {}, {
+    headers: {
+      'Authorization': 'Bearer ' + getAuthToken(),
+    }
+  }).catch(err => {
+    notify('Your session was already expired.', 'warning', 5000);
+  })
 }
 
 //To retrieve only the authentication token.

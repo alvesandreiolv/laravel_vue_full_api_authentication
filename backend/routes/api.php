@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 
 // Group of routes that require authentication with Sanctum
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
 
     //The logout route. Needs to be logged in first.
     Route::post('/logout', [AuthController::class, 'logout']);

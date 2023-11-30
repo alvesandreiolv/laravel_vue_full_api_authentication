@@ -19,9 +19,9 @@ const email = ref('')
 username.value = '...';
 email.value = '...';
 
-axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {}, {
+axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {}, {
   headers: {
-    'Authorization': 'Bearerx ' + getAuthToken(),
+    'Authorization': 'Bearer ' + getAuthToken(),
   }
 }).then(response => {
   //If returns data, replace username and email.
