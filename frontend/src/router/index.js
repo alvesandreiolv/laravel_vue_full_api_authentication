@@ -71,11 +71,11 @@ router.beforeEach((to, from, next) => {
     //If not, so proceed to the route.
     next();
   }
-  document.getElementById('pageLoadingBar').style.visibility = 'visible';
+  //Adds loading start
 });
 
 router.afterEach((to, from) => {
-  document.getElementById('pageLoadingBar').style.visibility = 'hidden';
+  //Adds loading stop
 });
 
 export default router; // export the router instance

@@ -6,7 +6,7 @@
       <template v-for="(item, index) in breadcrumbs" :key="index">
         <!-- a. -->
         <template v-if="item.text !== undefined">
-          <li><router-link :to="item.path">{{ item.text }}</router-link></li>
+          <li><router-link :to="item.path" @click="buttonLoading($event)">{{ item.text }}</router-link></li>
         </template>
       </template>
     </ul>
@@ -35,6 +35,12 @@ export default {
           path: route.path,
         };
       });
+    },
+  },
+  methods: {
+    buttonLoading(event) {
+      event.target.setAttribute('aria-busy', 'true');
+      event.target.innerHTML = '';
     },
   },
 };

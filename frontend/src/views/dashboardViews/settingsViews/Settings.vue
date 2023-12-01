@@ -4,11 +4,13 @@
   <div class="grid">
     <!-- Change my username button -->
     <router-link :to="{ name: 'Change Username' }" style="text-decoration: none; color: inherit;">
-      <button class="menuButton secondary outline"><i class="fa-regular fa-pen-to-square"></i> Change my username</button>
+      <button class="menuButton secondary outline" @click="buttonLoading($event)"><i
+          class="fa-regular fa-pen-to-square"></i> Change my username</button>
     </router-link>
     <!-- Change my password button -->
     <router-link :to="{ name: 'Change Password' }" style="text-decoration: none; color: inherit;">
-      <button class="menuButton secondary outline"><i class="fa-regular fa-pen-to-square"></i> Change my password</button>
+      <button class="menuButton secondary outline" @click="buttonLoading($event)"><i
+          class="fa-regular fa-pen-to-square"></i> Change my password</button>
     </router-link>
     <!-- Delete my account button -->
     <button @click="notifyDelete" class="menuButton outline"
@@ -24,6 +26,12 @@ import { notify } from '@/services/notificator.js';
 // Define a method to call notify with specific arguments
 function notifyDelete() {
   notify('Nothing happened: It\'s not ready yet.', 'danger');
+}
+
+//To add loading animation when clicking in the buttons.
+function buttonLoading(event) {
+  event.target.setAttribute('aria-busy', 'true');
+  event.target.innerHTML = '';
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <!-- Dashboard's navbar -->
-  <nav class="container" >
+  <nav class="container">
     <ul>
       <li><strong></strong></li>
     </ul>
@@ -9,7 +9,7 @@
         <img src="../../assets/images/lightSwitch.png" alt="Light Switch">
       </li>
       <li>
-        <a @click="executeLogout()" href="#" @click.prevent>Logout</a>
+        <a @click="executeLogout($event)" href="#" @click.prevent>Logout</a>
       </li>
     </ul>
   </nav>
@@ -58,7 +58,9 @@ import { logout } from '@/services/authenticator.js';
 import TheSessionExpiredModal from "@/components/TheSessionExpiredModal.vue";
 
 // Groups all actions into the function below.
-function executeLogout() {
+function executeLogout(event) {
+  event.target.setAttribute('aria-busy', 'true');
+  event.target.innerHTML = '';
   logout();
 }
 </script>
