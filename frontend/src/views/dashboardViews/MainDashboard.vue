@@ -14,26 +14,8 @@
     </ul>
   </nav>
 
-  <!-- Below is the session expired modal that will be available in all places inside the dashboard. -->
-  <dialog id="modalSessionExpired">
-    <article>
-      <h3 id="modalSessionExpiredTitle">
-        You session has expired.
-      </h3>
-      <p id="modalSessionExpiredMainText">
-        It appears that your authentication is no longer valid. To continue using this service, please log in again.
-      </p>
-      <footer>
-        <a id="modalSessionExpiredCancelButton" href="#" role="button" class="secondary" data-target="modal-example"
-          onClick="">
-          Cancel
-        </a>
-        <router-link id="modalSessionExpiredConfirmButton" data-target="modal-example" to="/login" role="button">
-          Go to Login
-        </router-link>
-      </footer>
-    </article>
-  </dialog>
+  <!-- Below adds session expired modal that will be available for all dashboard pages. -->
+  <TheSessionExpiredModal />
 
   <!-- Below is the main body for the rest of the dashboard platform -->
   <main class="container" id="docs">
@@ -73,6 +55,7 @@
 //Adds toggleDark.
 import { isDark, toggleDark } from '@/helpers/toggleDark.js';
 import { logout } from '@/services/authenticator.js';
+import TheSessionExpiredModal from "@/components/TheSessionExpiredModal.vue";
 
 // Groups all actions into the function below.
 function executeLogout() {
