@@ -29,8 +29,8 @@ axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   //If not, deals with the error and replace username and email.
   name.value = 'Error';
   email.value = 'Error';
-  //If is authorization error, checks.
-  checkToken();
+  //If fails to retrieve data, checks authentication.
+  checkToken(true);
 }).finally(() => {
   isLoadingInfo.value = false;
 });

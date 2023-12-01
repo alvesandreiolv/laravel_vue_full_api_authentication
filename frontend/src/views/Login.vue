@@ -154,9 +154,11 @@ body>footer {
 </style>
 
 <script setup>
-import { login } from '@/services/authenticator.js';
+import { login, checkToken } from '@/services/authenticator.js';
 import { toggleDark } from '@/helpers/toggleDark.js';
 import { ref } from 'vue'
+import router from '@/router/index.js';
+import { notify } from '@/services/notificator.js';
 
 // Declares initial login and password fiels and make it reactive.
 const email = ref('')
@@ -177,5 +179,21 @@ async function executeLogin() {
     password.value = '';
   }
 }
+
+// Below checks if user is already authenticated.
+async function checkLogin() {
+  try {
+    const result = await checkToken();
+    // If user is already authenticated, pushes him to home.
+    if (result !== false) {
+      router.push('/home');
+      notify("You're already logged in.");
+      isLoading.value = true;
+    }
+  } finally {
+  }
+}
+//Runs the function above
+checkLogin();
 
 </script>

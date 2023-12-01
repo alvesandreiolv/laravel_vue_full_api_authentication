@@ -43,7 +43,12 @@ function logout() {
     //Sends success notification.
     notify('You\'ve been logged out.');
   }).catch(err => {
-    notify('Logout failed: Your session may already be expired.', 'warning', 5000);
+    //If indeed not authenticated.
+    if ((typeof err.request !== 'undefined') && (err.request.status == 401)) {
+      notify('Your session may already was expired.', 'warning', 5000);
+    } else {
+      notify('Logout attempt failed: Unknown.', 'danger', 5000);
+    }
   })
   //Removes auth token from browser.
   localStorage.removeItem(authTokenName);
@@ -54,25 +59,40 @@ function logout() {
 
 //To retrieve only the authentication token.
 function getToken() {
-  return decryptString(localStorage.getItem(authTokenName));
+  if (localStorage.getItem(authTokenName) !== null) {
+    return decryptString(localStorage.getItem(authTokenName));
+  }
+  return false;
 }
 
-//To check if token is still valid
-function checkToken() {
-  //Will check in the serve if user is indeed logged. 
-  axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/checkauth', {
-    headers: {
-      'Authorization': 'Bearer ' + getToken(),
+// To check if the token is still valid
+async function checkToken(ifNotShowModal = false) {
+  // Checks if the token exists in the first place.
+  if (!getToken()) {
+    return false;
+  }
+  try {
+    // If the token exists, check with the server if the user is indeed logged in.
+    await axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/checkauth', {
+      headers: {
+        'Authorization': 'Bearer ' + getToken(),
+      }
+    });
+    // If the request is successful, the user is authenticated.
+    return true;
+  } catch (err) {
+    // Handle authentication failure
+    if (err.response && err.response.status === 401) {
+      // Show the modal.
+      if (ifNotShowModal) {
+        openModal(document.getElementById('modalSessionExpired'));
+      }
+      // Removes the auth token from the browser.
+      localStorage.removeItem(authTokenName);
     }
-  }).then(response => {
-    //console.log(response.data)
-  }).catch(err => {
-    //If the token is not valid anymore
-    //Removes auth token from browser.
-    localStorage.removeItem(authTokenName);
-    //Show the modal.
-    openModal(document.getElementById('modalSessionExpired'));
-  })
+    // Throw an error to indicate authentication failure.
+    return false;
+  }
 }
 
 //For easy encripting made by chatgpt.
