@@ -1,5 +1,5 @@
 <template>
-  <DashPageHeader title="My information" content="This below is information regarding your account." />
+  <TheDashboardPageHeader title="My information" content="This below is information regarding your account." />
   Name: {{ name }}
   <br>
   Email: {{ email }}
@@ -8,8 +8,7 @@
 <script setup>
 import axios from 'axios';
 import { getToken, checkToken } from '@/services/authenticator.js';
-
-import DashPageHeader from "@/components/DashPageHeader.vue";
+import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 import { ref } from 'vue'
 
 const name = ref('')

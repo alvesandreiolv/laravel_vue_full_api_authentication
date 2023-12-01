@@ -6,14 +6,15 @@
         You session has expired.
       </h3>
       <p id="modalSessionExpiredMainText">
-        It appears that your authentication is no longer valid. To continue using this service, please log in again.
+        It appears that your session is no longer valid. To continue using this service, please log in again.
       </p>
       <footer>
-        <a id="modalSessionExpiredCancelButton" href="#" @click.prevent="toggleSessionModal('modalSessionExpired')"
-          role="button" class="secondary" data-target="modal-example">
+        <a id="modalSessionExpiredCancelButton" href="#" @click.prevent="toggleSessionModal()" role="button"
+          class="secondary" data-target="modal-example">
           Cancel
         </a>
-        <router-link id="modalSessionExpiredConfirmButton" data-target="modal-example" to="/login" role="button">
+        <router-link id="modalSessionExpiredConfirmButton" @click.prevent="toggleSessionModal()"
+          data-target="modal-example" to="/login" role="button">
           Go to Login
         </router-link>
       </footer>
@@ -24,7 +25,8 @@
 <script setup>
 import { closeModal } from '@/helpers/modal.js';
 
-function toggleSessionModal(modalName) {
-  closeModal(document.getElementById(modalName));
+function toggleSessionModal() {
+  closeModal(document.getElementById('modalSessionExpired'));
 }
+
 </script>

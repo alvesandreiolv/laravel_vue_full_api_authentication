@@ -1,6 +1,5 @@
 <template>
-  <DashPageHeader title="Change Password" content="Please fill the required fields below." />
-
+  <TheDashboardPageHeader title="Change Password" content="Please fill the required fields below." />
 
   <form>
     <label for="firstname">
@@ -26,7 +25,7 @@
 </template>
 
 <script setup>
-import DashPageHeader from "@/components/DashPageHeader.vue";
+import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 </script>
 
 <style></style>

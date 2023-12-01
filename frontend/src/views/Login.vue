@@ -168,9 +168,13 @@ async function executeLogin() {
   try {
     isLoading.value = true;
     await login(email.value, password.value);
-  } finally {
-    password.value = '';
+  } catch {
+    //Stops loading only if fails.
     isLoading.value = false;
+  } finally {
+    //Anything that happens, erases password.
+    password.value = '';
   }
 }
+
 </script>

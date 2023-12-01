@@ -1,5 +1,5 @@
 <template>
-  <DashPageHeader title="Dashboard home" content="Hi, xxxxxxx. How can we help you today?" />
+  <TheDashboardPageHeader title="Dashboard home" content="Hi, xxxxxxx. How can we help you today?" />
 
   <div class="grid">
     <!-- See my info button -->
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import DashPageHeader from "@/components/DashPageHeader.vue";
+import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 import { notify } from '@/services/notificator.js';
 
 function test123() {

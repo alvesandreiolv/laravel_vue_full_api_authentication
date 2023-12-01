@@ -1,5 +1,5 @@
 <template>
-  <DashPageHeader title="Change Username"
+  <TheDashboardPageHeader title="Change Username"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
 
   <form>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import DashPageHeader from "@/components/DashPageHeader.vue";
+import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 </script>
 
 <style></style>

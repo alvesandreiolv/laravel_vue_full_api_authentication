@@ -19,6 +19,7 @@ const routes = [
     children: [
       {
         path: '',
+        name: '',
         component: () => import('../views/dashboardViews/Home.vue'),
       },
       {
@@ -32,6 +33,7 @@ const routes = [
         children: [
           {
             path: '',
+            name: '',
             component: () => import('../views/dashboardViews/settingsViews/Settings.vue'),
           },
           {
