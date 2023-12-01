@@ -19,7 +19,6 @@ const routes = [
     children: [
       {
         path: '',
-        name: '',
         component: () => import('../views/dashboardViews/Home.vue'),
       },
       {
@@ -33,7 +32,6 @@ const routes = [
         children: [
           {
             path: '',
-            name: '',
             component: () => import('../views/dashboardViews/settingsViews/Settings.vue'),
           },
           {
@@ -73,6 +71,11 @@ router.beforeEach((to, from, next) => {
     //If not, so proceed to the route.
     next();
   }
+  document.getElementById('pageLoadingBar').style.visibility = 'visible';
+});
+
+router.afterEach((to, from) => {
+  document.getElementById('pageLoadingBar').style.visibility = 'hidden';
 });
 
 export default router; // export the router instance

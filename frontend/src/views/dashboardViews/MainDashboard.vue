@@ -1,6 +1,6 @@
 <template>
   <!-- Dashboard's navbar -->
-  <nav class="container">
+  <nav class="container" >
     <ul>
       <li><strong></strong></li>
     </ul>
