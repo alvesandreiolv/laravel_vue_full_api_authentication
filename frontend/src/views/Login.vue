@@ -168,7 +168,8 @@ async function executeLogin() {
   try {
     isLoading.value = true;
     await login(email.value, password.value);
-  } catch {
+  } catch (error) {
+    //console.log(error)
     //Stops loading only if fails.
     isLoading.value = false;
   } finally {

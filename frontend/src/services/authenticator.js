@@ -26,8 +26,9 @@ async function login(email, password) {
       notify('Login Failed: Invalid credentials.', 'warning');
     } else {
       notify('Login Failed: Try again later.', 'warning');
-      console.log(err)
     }
+    //Throws error so can be read by who called this function.
+    throw new Error("Login failed.");
   })
 }
 

@@ -18,10 +18,6 @@
         <i class="fa-regular fa-pen-to-square"></i> Change settings
       </button>
     </router-link>
-    <!-- Test button -->
-    <button class="menuButton secondary outline" @click="test123">
-      <i class="fa-regular fa-star"></i> Test stuff here
-    </button>
   </div>
 </template>
 
@@ -33,12 +29,6 @@ import { notify } from '@/services/notificator.js';
 function buttonLoading(event) {
   event.target.setAttribute('aria-busy', 'true');
   event.target.innerHTML = '';
-}
-
-function test123() {
-  //authenticationStore().returnToken()
-  //console.log(authenticationStore().returnToken());
-  notify('Nothing happened.', 'danger');
 }
 
 // Define a method to call notify with specific arguments

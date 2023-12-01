@@ -1,8 +1,7 @@
 <template>
   <TheDashboardPageHeader title="My information" content="This below is information regarding your account." />
-  Name: {{ name }}
-  <br>
-  Email: {{ email }}
+  <p style="margin-bottom: 15px;">Name: <code :aria-busy="isLoadingInfo">{{ name }}</code></p>
+  <p>Email: <code :aria-busy="isLoadingInfo">{{ email }}</code></p>
 </template>
 
 <script setup>
@@ -13,9 +12,10 @@ import { ref } from 'vue'
 
 const name = ref('')
 const email = ref('')
+const isLoadingInfo = ref(true)
 
-name.value = '...';
-email.value = '...';
+name.value = '';
+email.value = '';
 
 axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   headers: {
@@ -31,6 +31,7 @@ axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   email.value = 'Error';
   //If is authorization error, checks.
   checkToken();
+}).finally(() => {
+  isLoadingInfo.value = false;
 });
-
 </script>
