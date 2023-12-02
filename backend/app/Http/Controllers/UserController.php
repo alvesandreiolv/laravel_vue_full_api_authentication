@@ -14,7 +14,7 @@ class UserController extends Controller
 
         // Validate the incoming request data
         $validator = Validator::make($request->all(), [
-            'password' => 'required|date',
+            'password' => 'required',
             'newUsername' => 'required',
         ]);
 
@@ -30,7 +30,12 @@ class UserController extends Controller
 
         // Request is valid, now proceed...
 
-        return 'You would change username.';
+        // Update the user's username
+        auth()->user()->username = $request->newUsername;
+        auth()->user()->save();
+
+        //Return success message.
+        return response()->json(['message' => 'Username changed.'], 200);
     }
 
     public function changePassword(Request $request)
