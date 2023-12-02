@@ -12,7 +12,7 @@ class UserController extends Controller
     public function changeUsername(Request $request)
     {
 
-        // Validate the incoming request data
+        // Validate the incoming request data.
         $validator = Validator::make($request->all(), [
             'password' => 'required',
             'new_username' => 'required',
@@ -28,15 +28,15 @@ class UserController extends Controller
             return response()->json(['message' => 'Unauthorized.', 'errors' => ['Current password is incorrect.']], 401);
         }
 
-        // Check if new username is not the same of current one
-        if (auth()->user()->email == $request->newUsername) {
+        // Check if new username is not the same of current one.
+        if (auth()->user()->email == $request->new_username) {
           return response()->json(['message' => 'Invalid data provided.', 'errors' => ['New username is equal to the current one.']], 422);
         }
 
         // Request is valid, now proceed...
 
-        // Update the user's username
-        auth()->user()->email = $request->newUsername;
+        // Update the user's username.
+        auth()->user()->email = $request->new_username;
         auth()->user()->save();
 
         //Return success message.
