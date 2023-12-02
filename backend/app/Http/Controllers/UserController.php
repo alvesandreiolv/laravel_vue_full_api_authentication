@@ -74,7 +74,7 @@ class UserController extends Controller
 
         // Check if the new password is not the same of current.
         if (Hash::check($request->new_password, auth()->user()->password)) {
-            return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username cannot be equal to current one.']], 401);
+            return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new password cannot be equal to current one.']], 401);
         }
 
         // Request is valid, now proceed...
