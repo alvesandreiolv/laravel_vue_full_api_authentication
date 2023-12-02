@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
         // Validate the incoming request data
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
             'remember' => 'boolean',
         ]);
