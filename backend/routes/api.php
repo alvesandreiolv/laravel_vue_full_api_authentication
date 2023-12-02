@@ -23,7 +23,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Public route to check if this app is online.
 Route::get('/uptime', function (Request $request) {
-    return 'This service is online.';
+    return response()->json(['message' => 'This service is online.'], 200);
 });
 
 // -- Internal/Private routes below -------
@@ -36,7 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // If the user has the token, return user information for testing.
     Route::get('/checkauth', function (Request $request) {
-        return 'You are authenticated.';
+        return response()->json(['message' => 'You are authenticated.'], 200);
     });
 
     // If the user has the token, return user information for testing.

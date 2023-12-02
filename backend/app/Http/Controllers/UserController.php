@@ -14,7 +14,7 @@ class UserController extends Controller
 
         // Validate the incoming request data
         $validator = Validator::make($request->all(), [
-            'password' => 'required',
+            'password' => 'required|date',
             'newUsername' => 'required',
         ]);
 
@@ -25,7 +25,7 @@ class UserController extends Controller
 
         // Check if password is correct.
         if (!Hash::check($request->password, auth()->user()->password)) {
-            return response()->json(['message' => 'Password is incorrect.'], 401);
+            return response()->json(['message' => 'Unauthorized.', 'errors' => 'Current password is incorrect.'], 401);
         }
 
         // Request is valid, now proceed...
