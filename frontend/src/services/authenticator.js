@@ -8,11 +8,12 @@ import router from '@/router/index.js';
 const authTokenName = import.meta.env.VITE_AUTHTOKEN_NAME;
 
 //Login receives only the token, given that the request management is done in the components/views.
-async function login(email, password) {
+async function login(email, password, remember = false) {
   //Tries to connect via API to retrieve the token. 
   await axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/login', {
     email: email,
     password: password,
+    remember: remember,
   }, {
     timeout: 10000, // Set the timeout value in milliseconds (5 seconds in this example)
   }).then(response => {
@@ -40,7 +41,7 @@ function logout() {
   axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/logout', {}, {
     headers: {
       'Authorization': 'Bearer ' + getToken(),
-    }
+    },
     timeout: 10000, // Set the timeout value in milliseconds (5 seconds in this example) 
   }).then(response => {
     //Sends success notification.

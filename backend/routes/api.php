@@ -15,10 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-//The login route.
+// -- Public routes below -------
+
+// The public login route.
 Route::post('/login', [AuthController::class, 'login']);
 
-// Group of routes that require authentication with Sanctum
+// Public route to check if this app is online.
+Route::get('/uptime', function (Request $request) {
+    return 'This service is online.';
+});
+
+// -- Internal/Private routes below -------
+
+// Group that requires user to be authenticated
 Route::middleware(['auth:sanctum'])->group(function () {
 
     //The logout route. Needs to be logged in first.
@@ -35,8 +44,3 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
 });
-
-//Test route with public access.
-//Route::post('/test2', public function () {
-//    return response()->json(['message' => 'This is a test route 2.']);
-//});

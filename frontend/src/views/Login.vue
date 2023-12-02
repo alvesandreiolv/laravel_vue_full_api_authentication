@@ -17,7 +17,7 @@
             aria-label="Password" autocomplete="current-password" required />
           <fieldset>
             <label for="terms">
-              <input type="checkbox" id="terms" name="terms" />
+              <input v-model="remember" :checked="remember" type="checkbox" id="terms" name="terms" />
               Remember me
             </label>
           </fieldset>
@@ -163,13 +163,14 @@ import { notify } from '@/services/notificator.js';
 // Declares initial login and password fiels and make it reactive.
 const email = ref('')
 const password = ref('')
+const remember = ref(false)
 const isLoading = ref(false)
 
 // Below, starts loading animation and try to login.
 async function executeLogin() {
   try {
     isLoading.value = true;
-    await login(email.value, password.value);
+    await login(email.value, password.value, remember.value);
   } catch (error) {
     //console.log(error)
     //Stops loading only if fails.

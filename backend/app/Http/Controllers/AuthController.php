@@ -11,10 +11,27 @@ class AuthController extends Controller
     //Login route for api.
     public function login(Request $request)
     {
+        // Validate the incoming request data
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+            'remember' => 'boolean',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
+        }
+
+        //Below gets the credentials.
         $credentials = $request->only('email', 'password');
+        //Below sets expiration time. If it is false, so returns null to variable, other wise, return minutes.
+        $sessionExpirationTime = $request->input('remember', false) ? null : 30;
+
+        //If authentication passes, sets expiration time and returns token. 
         if (Auth::attempt($credentials)) {
             //Create the token.
-            $token = Auth::user()->createToken('JWT')->plainTextToken;
+            $token = Auth::user()->createToken('JWT', ['expires_in' => $sessionExpirationTime])->plainTextToken;
             //Attach the cookie to the response
             return response()->json(['token' => $token, 'message' => 'Authenticated'], 200);
         }
