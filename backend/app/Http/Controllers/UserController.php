@@ -25,7 +25,7 @@ class UserController extends Controller
 
         // Check if password is correct.
         if (!Hash::check($request->password, auth()->user()->password)) {
-            return response()->json(['message' => 'Unauthorized.', 'errors' => 'Current password is incorrect.'], 401);
+            return response()->json(['message' => 'Unauthorized.', 'errors' => ['Current password is incorrect.']], 401);
         }
 
         // Request is valid, now proceed...
@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
     {
-        return 'You would change password.';
+      return response()->json(['message' => 'You would change password.'], 200);
     }
 
 }
