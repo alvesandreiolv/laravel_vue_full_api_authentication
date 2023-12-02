@@ -24,7 +24,7 @@ class UserController extends Controller
         }
 
         // Check if password is correct.
-        if (!Hash::check($request->password, $user->password)) {
+        if (!Hash::check($request->password, auth()->user()->password)) {
             return response()->json(['message' => 'Password is incorrect.'], 401);
         }
 
