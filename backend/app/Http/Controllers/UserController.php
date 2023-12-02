@@ -28,10 +28,15 @@ class UserController extends Controller
             return response()->json(['message' => 'Unauthorized.', 'errors' => ['Current password is incorrect.']], 401);
         }
 
+        // Check if new username is not the same of current one
+        if (auth()->user()->email == $request->newUsername) {
+          return response()->json(['message' => 'Invalid data provided.', 'errors' => ['New username is equal to the current one.']], 422);
+        }
+
         // Request is valid, now proceed...
 
         // Update the user's username
-        auth()->user()->username = $request->newUsername;
+        auth()->user()->email = $request->newUsername;
         auth()->user()->save();
 
         //Return success message.
