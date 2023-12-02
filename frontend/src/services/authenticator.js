@@ -13,6 +13,8 @@ async function login(email, password) {
   await axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/login', {
     email: email,
     password: password,
+  }, {
+    timeout: 10000, // Set the timeout value in milliseconds (5 seconds in this example)
   }).then(response => {
     //Stores the token in a super secure local storage.
     localStorage.setItem(authTokenName, encryptString(response.data.token));
@@ -39,13 +41,14 @@ function logout() {
     headers: {
       'Authorization': 'Bearer ' + getToken(),
     }
+    timeout: 10000, // Set the timeout value in milliseconds (5 seconds in this example) 
   }).then(response => {
     //Sends success notification.
-    notify('You\'ve been logged out.');
+    notify('You have been logged out.');
   }).catch(err => {
     //If indeed not authenticated.
     if ((typeof err.request !== 'undefined') && (err.request.status == 401)) {
-      notify('Your session may already was expired.', 'warning', 5000);
+      notify('Your session may already be expired.', 'warning', 5000);
     } else {
       notify('Logout attempt failed: Unknown.', 'danger', 5000);
     }
@@ -76,7 +79,8 @@ async function checkToken(ifNotShowModal = false) {
     await axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/checkauth', {
       headers: {
         'Authorization': 'Bearer ' + getToken(),
-      }
+      },
+      timeout: 5000, // Set the timeout value in milliseconds (5 seconds in this example)
     });
     // If the request is successful, the user is authenticated.
     return true;

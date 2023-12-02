@@ -187,7 +187,7 @@ async function checkLogin() {
     // If user is already authenticated, pushes him to home.
     if (result !== false) {
       router.push('/home');
-      notify("You're already logged in.");
+      notify("You are already logged in.");
       isLoading.value = true;
     }
   } finally {

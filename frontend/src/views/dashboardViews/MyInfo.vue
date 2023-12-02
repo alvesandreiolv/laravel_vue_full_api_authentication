@@ -20,7 +20,7 @@ email.value = '';
 axios.get(import.meta.env.VITE_BASE_BACKEND_URL + '/api/user', {
   headers: {
     'Authorization': 'Bearer ' + getToken(),
-  }
+  },
 }).then(response => {
   //If returns data, replace username and email.
   name.value = response.data.name;
