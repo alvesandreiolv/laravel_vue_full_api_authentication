@@ -15,7 +15,7 @@ class UserController extends Controller
         // Validate the incoming request data
         $validator = Validator::make($request->all(), [
             'password' => 'required',
-            'newUsername' => 'required',
+            'new_username' => 'required',
         ]);
 
         // Check if validation fails and return errors.
