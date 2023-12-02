@@ -13,15 +13,13 @@ class AuthController extends Controller
     //Login route for api.
     public function login(Request $request)
     {
-        // Validate the incoming request data
-        $validator = Validator::make($request->all(), [
+
+        // Check if validation fails
+        if (Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required',
             'remember' => 'boolean|nullable',
-        ]);
-
-        // Check if validation fails
-        if ($validator->fails()) {
+        ])->fails()) {
             return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
         }
 
