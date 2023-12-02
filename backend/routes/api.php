@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     //The logout route. Needs to be logged in first.
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
     // If the user has the token, return user information for testing.
     Route::get('/checkauth', function (Request $request) {
         return 'You are authenticated.';
@@ -42,5 +43,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    // Route for changing username
+    Route::post('/changeusername', [UserController::class, 'changeUsername']);
+
+    // Route for changing password
+    Route::post('/changepassword', [UserController::class, 'changePassword']);
 
 });
