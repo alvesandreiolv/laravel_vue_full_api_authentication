@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -24,7 +24,7 @@ class UserController extends Controller
         }
 
         // Check if password is correct.
-        if (!Auth::attempt(['email' => auth()->user()->email, 'password' => $request->password])) {
+        if (!Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Password is incorrect.'], 401);
         }
 
