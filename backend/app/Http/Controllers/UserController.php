@@ -53,9 +53,9 @@ class UserController extends Controller
             'new_password' => [
                 'required',
                 'string',
-                'min:8',
                 'max:20',
-                Password::mixedCase()
+                Password::min(8)
+                    ->mixedCase()
                     ->numbers()
                     ->symbols()
                     ->uncompromised(),
