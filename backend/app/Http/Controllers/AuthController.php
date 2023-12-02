@@ -13,29 +13,31 @@ class AuthController extends Controller
     //Login route for api.
     public function login(Request $request)
     {
-
-        // Check if validation fails
-        if (Validator::make($request->all(), [
+        // Validate the incoming request data.
+        $validator = Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required',
             'remember' => 'boolean|nullable',
-        ])->fails()) {
+        ]);
+
+        // Check if validation fails and return errors.
+        if ($validator->fails()) {
             return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
         }
 
-        //Below gets the credentials.
-        $credentials = $request->only('email', 'password');
+        //Check if credentials are valid.
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+        // Request is valid, now proceed...
+
         //Below sets expiration time. If false, return date, if true, return null.
         $sessionExpirationTime = $request->input('remember', false) ? null : Carbon::now()->addMinutes(1440);
-
-        //If authentication passes, sets expiration time and returns token.
-        if (Auth::attempt($credentials)) {
-            //Create the token.
-            $token = Auth::user()->createToken('JWT', ['*'], $sessionExpirationTime)->plainTextToken;
-            //Attach the cookie to the response
-            return response()->json(['token' => $token, 'message' => 'Authenticated'], 200);
-        }
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        //Create the token.
+        $token = Auth::user()->createToken('JWT', ['*'], $sessionExpirationTime)->plainTextToken;
+        //Attach the cookie to the response
+        return response()->json(['token' => $token, 'message' => 'Authenticated'], 200);
     }
 
     //Logout route for api.

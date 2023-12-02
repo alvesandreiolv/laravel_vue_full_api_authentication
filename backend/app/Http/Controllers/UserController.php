@@ -11,18 +11,24 @@ class UserController extends Controller
 
     public function changeUsername(Request $request)
     {
-        // Do request validation
-        if (Validator::make($request->all(), [
+
+        // Validate the incoming request data
+        $validator = Validator::make($request->all(), [
             'password' => 'required',
             'newUsername' => 'required',
-        ])->fails()) {
-            return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
+        ]);
+
+        // Check if validation fails and return errors.
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()], 422);
         }
 
         // Check if password is correct.
         if (!Auth::attempt(['email' => auth()->user()->email, 'password' => $request->password])) {
-            return response()->json(['message' => 'Password is incorrect.', 'errors' => $validator->errors()], 401);
+            return response()->json(['message' => 'Password is incorrect.'], 401);
         }
+
+        // Request is valid, now proceed...
 
         return 'You would change username.';
     }
