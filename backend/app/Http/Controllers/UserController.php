@@ -20,7 +20,7 @@ class UserController extends Controller
 
         // Check if validation fails and return errors.
         if ($validator->fails()) {
-            return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()], 422);
+            return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()->all()], 422);
         }
 
         // Check if password is correct.
