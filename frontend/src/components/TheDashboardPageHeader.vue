@@ -19,31 +19,27 @@
   </header>
 </template>
 
-<script>
-export default {
-  props: {
-    title: String,
-    content: String,
-  },
-  computed: {
-    breadcrumbs() {
-      // Generate breadcrumb items based on the current route
-      const routes = this.$route.matched;
-      return routes.map(route => {
-        return {
-          text: route.name,
-          path: route.path,
-        };
-      });
-    },
-  },
-  methods: {
-    buttonLoading(event) {
-      event.target.setAttribute('aria-busy', 'true');
-      event.target.innerHTML = '';
-    },
-  },
-};
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const props = defineProps(['title', 'content']);
+
+// Reactive data
+const breadcrumbs = ref([]);
+
+// Method to generate breadcrumb items based on the current route
+const routes = useRoute().matched;
+breadcrumbs.value = routes.map(route => ({
+  text: route.name,
+  path: route.path,
+}));
+
+function buttonLoading(event) {
+  event.target.setAttribute('aria-busy', 'true');
+  event.target.innerHTML = '';
+}
+
 </script>
 
 <style scoped></style>

@@ -1,7 +1,7 @@
 <template>
   <TheDashboardPageHeader title="My information" content="This below is information regarding your account." />
-  <p style="margin-bottom: 15px;">Name: <code :aria-busy="isLoadingInfo">{{ userData.name }}</code></p>
-  <p>Email: <code :aria-busy="isLoadingInfo">{{ userData.email }}</code></p>
+  <p style="margin-bottom: 15px;">Name: <code :aria-busy="userData.userDataIsLoading">{{ userData.name }}</code></p>
+  <p>Email: <code :aria-busy="userData.userDataIsLoading">{{ userData.email }}</code></p>
 </template>
 
 <script setup>

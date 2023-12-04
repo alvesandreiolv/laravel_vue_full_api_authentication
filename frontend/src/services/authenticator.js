@@ -16,7 +16,7 @@ async function login(email, password, remember = false) {
     password: password,
     remember: remember,
   }, {
-    timeout: 10000, // Set the timeout value in milliseconds (5 seconds in this example)
+    timeout: 10000, // Set the timeout value in milliseconds
   }).then(response => {
     //Stores the token in a super secure local storage.
     localStorage.setItem(authTokenName, encryptString(response.data.token));
@@ -65,9 +65,8 @@ function logout() {
 
 //To retrieve only the authentication token.
 function getToken() {
-  let authTokenNamezz = import.meta.env.VITE_AUTHTOKEN_NAME;
-  if (localStorage.getItem(authTokenNamezz) !== null) {
-    return decryptString(localStorage.getItem(authTokenNamezz));
+  if (localStorage.getItem(authTokenName) !== null) {
+    return decryptString(localStorage.getItem(authTokenName));
   }
   return false;
 }

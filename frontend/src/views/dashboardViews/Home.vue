@@ -1,5 +1,5 @@
 <template>
-  <TheDashboardPageHeader title="Dashboard home" content="Hi, {{ userData.name }}. How can we help you today?" />
+  <TheDashboardPageHeader title="Dashboard home" content="Hi. How can we help you today?" />
 
   <div class="grid">
     <!-- See my info button -->
@@ -29,7 +29,6 @@
 <script setup>
 import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 import { notify } from '@/services/notificator.js';
-import { userData } from '@/store/userBasicData.js';
 
 async function testStuff() {
   //userData.updateUserData();
