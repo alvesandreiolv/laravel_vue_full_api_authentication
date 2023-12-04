@@ -9,7 +9,7 @@
       Your current username is: <code :aria-busy="userData.userDataIsLoading">{{ userData.email }}</code>
       <input type="text" id="username" name="username" placeholder="Insert new username" v-model="username"
         :aria-invalid="displayErrors" required>
-      <small>Must be between 5 and 15 characters, only letters and numbers.</small>
+      <small>Must be between 10 and 25 characters, only letters and numbers.</small>
     </label>
     <ul id="errorList">
       <div v-if="displayErrors && errorMessages.length > 0">
