@@ -1,5 +1,5 @@
 <template>
-  <TheDashboardPageHeader title="Dashboard home" content="Hi, xxxxxxx. How can we help you today?" />
+  <TheDashboardPageHeader title="Dashboard home" content="Hi, {{ userData.name }}. How can we help you today?" />
 
   <div class="grid">
     <!-- See my info button -->
@@ -12,6 +12,11 @@
     <button class="menuButton secondary outline" @click="notifyEmail()">
       <i class="fa-regular fa-envelope"></i> Send test email
     </button>
+    <!-- Test stuff button 
+    <button class="menuButton secondary outline" @click="testStuff()">
+      <i class="fa-regular fa-envelope"></i> Test stuff {{ userData.name }}
+    </button>
+    -->
     <!-- Change settings button -->
     <router-link to="/settings" style="text-decoration: none; color: inherit;">
       <button class="menuButton mbLink secondary outline" @click="buttonLoading($event)">
@@ -24,6 +29,11 @@
 <script setup>
 import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 import { notify } from '@/services/notificator.js';
+import { userData } from '@/store/userBasicData.js';
+
+async function testStuff() {
+  //userData.updateUserData();
+}
 
 //To add loading animation when clicking in the buttons.
 function buttonLoading(event) {

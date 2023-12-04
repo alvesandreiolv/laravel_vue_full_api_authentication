@@ -3,6 +3,7 @@ import { openModal } from '../helpers/modal.js';
 import { notify } from '@/services/notificator.js';
 import axios from 'axios';
 import router from '@/router/index.js';
+import { userData } from '@/store/userBasicData.js';
 
 //To not make show up authentication token name in console.
 const authTokenName = import.meta.env.VITE_AUTHTOKEN_NAME;
@@ -23,6 +24,8 @@ async function login(email, password, remember = false) {
     router.push('/home');
     //Opens notification.
     notify('You have succefully logged in.', 'success');
+    // Updates user basica data.
+    userData.updateUserData();
   }).catch(err => {
     //If error, checks the kind of error and retuns message.
     if ((typeof err.response !== 'undefined') && err.response.data.message == 'Invalid credentials') {
@@ -58,13 +61,13 @@ function logout() {
   localStorage.removeItem(authTokenName);
   //Navigate to the login page.
   router.push('/login');
-
 }
 
 //To retrieve only the authentication token.
 function getToken() {
-  if (localStorage.getItem(authTokenName) !== null) {
-    return decryptString(localStorage.getItem(authTokenName));
+  let authTokenNamezz = import.meta.env.VITE_AUTHTOKEN_NAME;
+  if (localStorage.getItem(authTokenNamezz) !== null) {
+    return decryptString(localStorage.getItem(authTokenNamezz));
   }
   return false;
 }
