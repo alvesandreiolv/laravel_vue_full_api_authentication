@@ -2,10 +2,6 @@
   <TheDashboardPageHeader title="Change Password" content="Please fill the required fields below." />
 
   <form>
-    <label for="firstname">
-      Current password:
-      <input type="text" id="firstname" name="firstname" placeholder="Current" required>
-    </label>
     <!-- Grid -->
     <div class="grid">
       <!-- Markup example 1: input is inside label -->

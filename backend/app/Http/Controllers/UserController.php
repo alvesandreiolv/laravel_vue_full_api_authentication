@@ -16,7 +16,7 @@ class UserController extends Controller
         // Validate the incoming request data.
         $validator = Validator::make($request->all(), [
             'password' => 'required',
-            'new_username' => 'required',
+            'new_username' => 'required|alpha_num|min:5|max:30',
         ]);
 
         // Check if validation fails and return errors.
@@ -32,6 +32,11 @@ class UserController extends Controller
         // Check if new username is not the same of current one.
         if (auth()->user()->email == $request->new_username) {
             return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username cannot be equal to current one.']], 422);
+        }
+
+        // Check if the new username already exists for another user.
+        if (User::where('email', $request->new_username)->exists()) {
+            return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username is already taken.']], 422);
         }
 
         // Request is valid, now proceed...
