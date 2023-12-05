@@ -1,7 +1,6 @@
 <!-- In this page, the user can change it's current username. -->
 <template>
-  <TheDashboardPageHeader title="Change Username"
-    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+  <TheDashboardPageHeader title="Change username" content="Please fill the required fields below." />
 
   <!-- The form itself -->
   <form @submit.prevent="toggleUpdateUsernameModal('open')">
@@ -11,7 +10,7 @@
         :aria-invalid="displayErrors" required>
       <small>Must be between 10 and 25 characters, only letters and numbers.</small>
     </label>
-    <ul id="errorList">
+    <ul id="formErrorList">
       <div v-if="displayErrors && errorMessages.length > 0">
         <li v-for="errorMessage in errorMessages" :key="errorMessage">{{ errorMessage }}</li>
       </div>
@@ -25,9 +24,10 @@
     <article>
       <h3>Confirm your action</h3>
       <label for="currentpassword">
-        <small>In order to proceed, please insert you current password: {{ currentpassword }}</small>
+        <small>In order to proceed, please insert you current password:</small>
         <input type="password" id="currentpassword" name="currentpassword" v-model="currentpassword"
-          placeholder="Current password" required>
+          placeholder="Current password" v-on:keyup.enter="toggleUpdateUsernameModal('close'), executeUpdateUsername()"
+          required autofocus>
       </label>
       <footer>
         <a href="#" role="button" @click="toggleUpdateUsernameModal('close')" class="secondary">Cancel</a>
@@ -37,12 +37,7 @@
   </dialog>
 </template>
 
-<style>
-#errorList li {
-  color: #d81b60;
-  list-style: disc;
-}
-</style>
+<style></style>
 
 <script setup>
 import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
@@ -95,10 +90,12 @@ function executeUpdateUsername() {
     displayErrors.value = true;
     // Opens notification.
     notify('Username update failed', 'warning');
-    //If failed, will check if the password is correct.
-    checkToken(true);
+    //If the fail is a 402, will check if the password is correct.
+    if (err.response.status == 401) {
+      checkToken(true);
+    }
     // Console for errrors
-    console.log(err);
+    //console.log(err);
   }).finally(() => {
     // Whatever happens, reset password ref.
     currentpassword.value = '';
