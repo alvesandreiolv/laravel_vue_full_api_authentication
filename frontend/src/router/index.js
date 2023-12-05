@@ -11,6 +11,11 @@ const routes = [
     name: 'Login',
     component: () => import('../views/Login.vue')
   },
+  {
+    path: '/signin',
+    name: 'SignIn Page',
+    component: () => import('../views/SignIn.vue')
+  },
   //Below are all internal dashboard pages
   {
     path: '/home',

@@ -9,6 +9,9 @@
         <img src="../../assets/images/lightSwitch.png" alt="Light Switch">
       </li>
       <li>
+        <a href="/">Main</a>
+      </li>
+      <li>
         <a @click="executeLogout($event)" href="#" @click.prevent>Logout</a>
       </li>
     </ul>
@@ -63,4 +66,6 @@ function executeLogout(event) {
   event.target.innerHTML = '';
   logout();
 }
+
+
 </script>

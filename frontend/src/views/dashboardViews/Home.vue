@@ -1,5 +1,6 @@
 <template>
-  <TheDashboardPageHeader title="Dashboard home" content="Hi. How can we help you today?" />
+  <TheDashboardPageHeader title="Dashboard home" content="How can we help you today?" />
+  <!---->
 
   <div class="grid">
     <!-- See my info button -->
@@ -26,13 +27,16 @@
   </div>
 </template>
 
+<style>
+#footerText {
+  font-size: medium;
+  color: var(--muted-color);
+}
+</style>
+
 <script setup>
 import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 import { notify } from '@/services/notificator.js';
-
-async function testStuff() {
-  //userData.updateUserData();
-}
 
 //To add loading animation when clicking in the buttons.
 function buttonLoading(event) {
@@ -46,4 +50,3 @@ function notifyEmail() {
 }
 </script>
 
-<style></style>

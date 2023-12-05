@@ -7,9 +7,11 @@
         The porpuse of this is to test vue routes. I can now go to login page and dashboard page.
       </p>
       <p class="grid">
-        <router-link to="/login" role="button">Go to login page</router-link>
-        <a href="#" @click="toggleDark()" role="button" class="contrast">Toggle dark-light mode</a>
-        <a href="#" @click="notifyTest" role="button" class="contrast" id="testeBotao1">Test notification</a>
+        <router-link to="/home" role="button">Go to dashboard page</router-link>
+        <a href="#" @click="toggleDark()" role="button" class="secondary">Toggle dark-light mode</a>
+        <a href="#" @click="notify('This is a test notification.')" role="button" class="secondary" id="testeBotao1">Test
+          notification</a>
+        <router-link to="/signin" role="button" class="contrast">Sign in</router-link>
       </p>
     </section>
   </main>
@@ -27,9 +29,4 @@
 import { toggleDark } from '../helpers/toggleDark.js';
 //Adds notification.
 import { notify } from '@/services/notificator.js';
-
-// Define a method to call notify with specific arguments
-function notifyTest() {
-  notify('This is a test notification.');
-}
 </script>
