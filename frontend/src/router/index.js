@@ -12,9 +12,9 @@ const routes = [
     component: () => import("../views/Login.vue"),
   },
   {
-    path: "/signin",
-    name: "SignIn Page",
-    component: () => import("../views/SignIn.vue"),
+    path: "/signup",
+    name: "SignUp Page",
+    component: () => import("../views/SignUp.vue"),
   },
   //Below are all internal dashboard pages
   {
@@ -75,7 +75,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const authToken = localStorage.getItem(import.meta.env.VITE_AUTHTOKEN_NAME);
+  const authToken = localStorage.hasOwnProperty(import.meta.env.VITE_AUTHTOKEN_NAME);
   // If the user is authenticated and trying to access the login page, redirect to the dashboard home
   if (to.name === 'Login' && authToken) {
     next("/home");
