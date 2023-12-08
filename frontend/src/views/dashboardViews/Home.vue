@@ -13,11 +13,7 @@
     <button class="menuButton secondary outline" @click="notifyEmail()">
       <i class="fa-regular fa-envelope"></i> Send test email
     </button>
-    <!-- Test stuff button 
-    <button class="menuButton secondary outline" @click="testStuff()">
-      <i class="fa-regular fa-envelope"></i> Test stuff {{ userData.name }}
-    </button>
-    -->
+    <!-- Test stuff button -->
     <!-- Change settings button -->
     <router-link to="/settings" style="text-decoration: none; color: inherit;">
       <button class="menuButton mbLink secondary outline" @click="buttonLoading($event)">

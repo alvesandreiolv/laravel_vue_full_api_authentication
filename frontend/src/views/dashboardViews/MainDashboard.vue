@@ -67,5 +67,4 @@ function executeLogout(event) {
   logout();
 }
 
-
 </script>

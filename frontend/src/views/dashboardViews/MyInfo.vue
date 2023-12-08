@@ -6,5 +6,8 @@
 
 <script setup>
 import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
-import { userData } from '@/store/userBasicData.js';
+import { userData, updateMissingUserData } from '@/store/userBasicData.js';
+
+// Update user data if there isn't.
+updateMissingUserData();
 </script>

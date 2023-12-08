@@ -3,7 +3,7 @@ import { openModal } from '../helpers/modal.js';
 import { notify } from '@/services/notificator.js';
 import axios from 'axios';
 import router from '@/router/index.js';
-import { userData } from '@/store/userBasicData.js';
+import { forceUpdateUserData } from '@/store/userBasicData.js';
 
 //To not make show up authentication token name in console.
 const authTokenName = import.meta.env.VITE_AUTHTOKEN_NAME;
@@ -22,10 +22,10 @@ async function login(email, password, remember = false) {
     localStorage.setItem(authTokenName, encryptString(response.data.token));
     //Navigate to the dashboard page.
     router.push('/home');
+    // Updates user basica data.
+    forceUpdateUserData();
     //Opens notification.
     notify('You have succefully logged in.', 'success');
-    // Updates user basica data.
-    userData.updateUserData();
   }).catch(err => {
     //If error, checks the kind of error and retuns message.
     if ((typeof err.response !== 'undefined') && err.response.data.message == 'Invalid credentials') {

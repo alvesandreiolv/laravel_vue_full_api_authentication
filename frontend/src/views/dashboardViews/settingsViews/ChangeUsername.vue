@@ -55,11 +55,14 @@
 <script setup>
 import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
 import axios from 'axios';
-import { userData } from '@/store/userBasicData.js';
+import { userData, forceUpdateUserData, updateMissingUserData } from '@/store/userBasicData.js';
 import { notify } from '@/services/notificator.js';
 import { ref, watch } from 'vue'
 import { getToken, checkToken } from '@/services/authenticator.js';
 import { openModal, closeModal } from '@/helpers/modal.js';
+
+// Update user data if it's missing
+updateMissingUserData();
 
 const username = ref('');
 const currentpassword = ref('');
@@ -94,7 +97,7 @@ function executeUpdateUsername() {
     // Resets usernamed field.
     username.value = '';
     // Updates user basica data.
-    userData.updateUserData();
+    forceUpdateUserData();
     // Opens notification
     notify('Your username was updated successfully', 'success');
     // Show update success messsage

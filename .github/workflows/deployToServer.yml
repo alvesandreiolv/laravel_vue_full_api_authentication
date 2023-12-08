@@ -17,8 +17,8 @@ jobs:
       - name: 📂 Post Deploy
         uses: appleboy/ssh-action@master
         with:
-          key: ${{ secrets.NEPTUNE_KEY }}
-          host: 44.216.249.98
+          key: ${{ secrets.ANDROMEDA_KEY }}
+          host: 54.82.58.202
           username: admin
           port: 22
           script: |
@@ -28,10 +28,10 @@ jobs:
       - name: 📂 Sync files
         uses: easingthemes/ssh-deploy@main
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.NEPTUNE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ANDROMEDA_KEY }}
           EXCLUDE: ".env, .htaccess, .htpasswd, /vendor/*, /storage/framework/cache/*, /storage/framework/views/*, /storage/framework/sessions/*, /public/.htpasswd"
           ARGS: "-rltgoDzvO --delete"
-          REMOTE_HOST: 44.216.249.98
+          REMOTE_HOST: 54.82.58.202
           REMOTE_USER: admin
           SOURCE: "/frontend/dist/"
           TARGET: "/home/admin/docker/myprojects1_app/frontend/data"
@@ -39,10 +39,10 @@ jobs:
       - name: 📂 Sync files
         uses: easingthemes/ssh-deploy@main
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.NEPTUNE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ANDROMEDA_KEY }}
           EXCLUDE: ".env, .htaccess, .htpasswd, /vendor/*, /storage/framework/cache/*, /storage/framework/views/*, /storage/framework/sessions/*, /public/.htpasswd"
           ARGS: "-rltgoDzvO --delete"
-          REMOTE_HOST: 44.216.249.98
+          REMOTE_HOST: 54.82.58.202
           REMOTE_USER: admin
           SOURCE: "/backend/"
           TARGET: "/home/admin/docker/myprojects1_app/backend"  
@@ -50,8 +50,8 @@ jobs:
       - name: 📂 Post Deploy
         uses: appleboy/ssh-action@master
         with:
-          key: ${{ secrets.NEPTUNE_KEY }}
-          host: 44.216.249.98
+          key: ${{ secrets.ANDROMEDA_KEY }}
+          host: 54.82.58.202
           username: admin
           port: 22
           script: |
