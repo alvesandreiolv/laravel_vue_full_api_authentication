@@ -1,16 +1,29 @@
 <template>
-    <span class="contrast" @click="toggleDark()" id="lightSwitch">
+    <span @click="toggleDark()" id="lightSwitch"
+        :class="{ 'lightSwitchAbsolute': absolutePosition, 'lightSwitchRelative': !absolutePosition }">
         <img src="../assets/images/lightSwitch.png" alt="Light Switch">
     </span>
 </template>
-
+  
 <style>
-#lightSwitch {
+/* for absolute position below */
+
+.lightSwitchAbsolute {
     position: absolute;
     top: 20px;
     right: 20px;
     padding: 20px;
     padding-top: 15px;
+    border-radius: 1000px;
+    filter: drop-shadow(3px 3px 5px #7979798a);
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    transition: 0.1s;
+    opacity: 0.5;
+}
+
+.lightSwitchRelative {
     border-radius: 1000px;
     filter: drop-shadow(3px 3px 5px #7979798a);
     cursor: pointer;
@@ -39,4 +52,5 @@
 
 <script setup>
 import { toggleDark } from '@/helpers/toggleDark.js';
+const props = defineProps(['absolutePosition']);
 </script>

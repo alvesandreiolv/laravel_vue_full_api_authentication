@@ -1,16 +1,10 @@
 <template>
   <!-- Toggle Dark/Light Switch-->
-  <toggleDarkSwitch />
+  <ToggleDarkSwitch :absolutePosition="true" />
 
   <!-- Main -->
   <main id="mainContainer" class="container">
-
-    <nav aria-label="breadcrumb">
-      <ul>
-        <li><router-link to="/"><i class="fa-regular fa-circle-left"></i> Go back to main page</router-link></li>
-      </ul>
-    </nav>
-
+    <GoBackToMainButton style="margin-bottom: 10px;" />
     <hgroup>
       <h1>Sign up</h1>
       <h2>Complete the form below in order to create a new account. Following this step, you will be
@@ -81,7 +75,8 @@
 </style>
 
 <script setup>
-import toggleDarkSwitch from "@/components/toggleDarkSwitch.vue";
+import ToggleDarkSwitch from "@/components/ToggleDarkSwitch.vue";
+import GoBackToMainButton from "@/components/GoBackToMainButton.vue";
 import axios from 'axios';
 import { notify } from '@/services/notificator.js';
 import { ref, watch } from 'vue'

@@ -1,9 +1,8 @@
 <template>
   <!-- Toggle dark/light switch -->
-  <toggleDarkSwitch />
+  <ToggleDarkSwitch :absolutePosition="true" />
   <!-- Main -->
   <main class="container">
-
     <article class="grid">
       <div>
         <hgroup>
@@ -23,12 +22,9 @@
             </label>
           </fieldset>
           <button type="submit" class="contrast" :aria-busy="isLoading">Login</button>
-          <!-- Back to main page button -->
-
         </form>
-        <nav aria-label="breadcrumb">
-            <router-link to="/"><i class="fa-regular fa-circle-left"></i> go back to main</router-link>
-          </nav>
+        <!-- Back to main page button -->
+        <GoBackToMainButton />
       </div>
       <div></div>
     </article>
@@ -129,8 +125,9 @@ body>footer {
 
 <script setup>
 import { login } from '@/services/authenticator.js';
-import toggleDarkSwitch from "@/components/toggleDarkSwitch.vue";
+import ToggleDarkSwitch from "@/components/ToggleDarkSwitch.vue";
 import { ref } from 'vue'
+import GoBackToMainButton from "@/components/GoBackToMainButton.vue";
 
 // Declares initial login and password fiels and make it reactive.
 const email = ref('')

@@ -1,4 +1,6 @@
 <template>
+  <!-- Toggle Dark/Light Switch-->
+  <ToggleDarkSwitch :absolutePosition="true" />
   <main id="mainContainer" class="container">
     <!-- Typography-->
     <section id="typography">
@@ -9,7 +11,6 @@
       <p class="grid">
         <router-link to="/login" role="button">Go to login</router-link>
         <router-link to="/home" role="button">Go to dashboard</router-link>
-        <a href="#" role="button" @click="toggleDark()" class="secondary">Toggle dark-light</a>
         <router-link to="/signup" role="button" class="contrast">Sign Up</router-link>
       </p>
     </section>
@@ -29,6 +30,5 @@
 </style>
 
 <script setup>
-//Adds toggleDark.
-import { toggleDark } from '../helpers/toggleDark.js';
+import ToggleDarkSwitch from "@/components/ToggleDarkSwitch.vue";
 </script>
