@@ -18,7 +18,7 @@
   </nav>
 
   <!-- Below adds session expired modal that will be available for all dashboard pages. -->
-  <TheSessionExpiredModal />
+  <SessionExpiredModal />
 
   <!-- Below is the main body for the rest of the dashboard platform -->
   <main class="container" id="docs">
@@ -58,7 +58,7 @@
 //Adds toggleDark.
 import { isDark, toggleDark } from '@/helpers/toggleDark.js';
 import { logout } from '@/services/authenticator.js';
-import TheSessionExpiredModal from "@/components/TheSessionExpiredModal.vue";
+import SessionExpiredModal from "@/components/SessionExpiredModal.vue";
 
 // Groups all actions into the function below.
 function executeLogout(event) {

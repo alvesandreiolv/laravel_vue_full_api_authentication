@@ -3,7 +3,7 @@
 
     <nav aria-label="breadcrumb">
       <ul>
-        <li><a href="/"><i class="fa-regular fa-circle-left"></i> Go back to main page</a></li>
+        <li><router-link to="/"><i class="fa-regular fa-circle-left"></i> Go back to main page</router-link></li>
       </ul>
     </nav>
 

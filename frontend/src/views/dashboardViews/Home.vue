@@ -1,5 +1,5 @@
 <template>
-  <TheDashboardPageHeader title="Dashboard home" content="How can we help you today?" />
+  <DashboardPageHeader title="Dashboard home" content="How can we help you today?" />
   <!---->
 
   <div class="grid">
@@ -31,7 +31,7 @@
 </style>
 
 <script setup>
-import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
+import DashboardPageHeader from "@/components/DashboardPageHeader.vue";
 import { notify } from '@/services/notificator.js';
 
 //To add loading animation when clicking in the buttons.

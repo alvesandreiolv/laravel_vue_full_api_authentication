@@ -1,6 +1,6 @@
 <!-- In this page, the user can change it's current username. -->
 <template>
-  <TheDashboardPageHeader title="Change display name" content="Please fill the required fields below." />
+  <DashboardPageHeader title="Change display name" content="Please fill the required fields below." />
 
   <!-- The form itself -->
   <form @submit.prevent="toggleUpdateNameModal('open')">
@@ -53,7 +53,7 @@
 </style>
 
 <script setup>
-import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
+import DashboardPageHeader from "@/components/DashboardPageHeader.vue";
 import axios from 'axios';
 import { userData, forceUpdateUserData, updateMissingUserData } from '@/store/userBasicData.js';
 import { notify } from '@/services/notificator.js';

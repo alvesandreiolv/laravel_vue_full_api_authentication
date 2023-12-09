@@ -1,5 +1,5 @@
 <template>
-  <TheDashboardPageHeader title="Change password" content="Please fill the required fields below." />
+  <DashboardPageHeader title="Change password" content="Please fill the required fields below." />
 
   <form @submit.prevent="toggleUpdatePasswordModal('open')">
     <!-- Grid -->
@@ -62,7 +62,7 @@
 </style>
 
 <script setup>
-import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
+import DashboardPageHeader from "@/components/DashboardPageHeader.vue";
 import axios from 'axios';
 import { notify } from '@/services/notificator.js';
 import { ref, watch } from 'vue'

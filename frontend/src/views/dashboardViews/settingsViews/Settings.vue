@@ -1,5 +1,5 @@
 <template>
-  <TheDashboardPageHeader title="Settings" content="What would you like to change?" />
+  <DashboardPageHeader title="Settings" content="What would you like to change?" />
 
   <div class="grid">
     <!-- Change my username button -->
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import TheDashboardPageHeader from "@/components/TheDashboardPageHeader.vue";
+import DashboardPageHeader from "@/components/DashboardPageHeader.vue";
 import { notify } from '@/services/notificator.js';
 
 // Define a method to call notify with specific arguments
