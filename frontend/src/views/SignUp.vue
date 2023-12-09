@@ -1,4 +1,8 @@
 <template>
+  <!-- Toggle Dark/Light Switch-->
+  <toggleDarkSwitch />
+
+  <!-- Main -->
   <main id="mainContainer" class="container">
 
     <nav aria-label="breadcrumb">
@@ -77,6 +81,7 @@
 </style>
 
 <script setup>
+import toggleDarkSwitch from "@/components/toggleDarkSwitch.vue";
 import axios from 'axios';
 import { notify } from '@/services/notificator.js';
 import { ref, watch } from 'vue'

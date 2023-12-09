@@ -1,12 +1,13 @@
 <template>
+  <!-- Toggle dark/light switch -->
+  <toggleDarkSwitch />
   <!-- Main -->
-  <span class="contrast" @click="toggleDark()" id="lightSwitch">
-    <img src="../assets/images/lightSwitch.png" alt="Light Switch">
-  </span>
   <main class="container">
+
     <article class="grid">
       <div>
         <hgroup>
+          <!-- Main login page text -->
           <h1>Sign in</h1>
           <h2>A minimalist layout for Login pages</h2>
         </hgroup>
@@ -22,7 +23,12 @@
             </label>
           </fieldset>
           <button type="submit" class="contrast" :aria-busy="isLoading">Login</button>
+          <!-- Back to main page button -->
+
         </form>
+        <nav aria-label="breadcrumb">
+            <router-link to="/"><i class="fa-regular fa-circle-left"></i> go back to main</router-link>
+          </nav>
       </div>
       <div></div>
     </article>
@@ -35,38 +41,6 @@
 .grid {
   margin: 0 20px;
 }
-
-#lightSwitch {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 20px;
-  padding-top: 15px;
-  border-radius: 1000px;
-  filter: drop-shadow(3px 3px 5px #7979798a);
-  cursor: pointer;
-  width: auto;
-  height: auto;
-  transition: 0.1s;
-  opacity: 0.5;
-}
-
-#lightSwitch:hover {
-  transform: rotate(10deg);
-  opacity: 1;
-}
-
-#lightSwitch:active {
-  transform: rotate(30deg) !important;
-}
-
-#lightSwitch img {
-  filter: invert(50%);
-  user-select: none;
-  width: 30px;
-  height: 30px;
-}
-
 
 /* Grid */
 main {
@@ -155,7 +129,7 @@ body>footer {
 
 <script setup>
 import { login } from '@/services/authenticator.js';
-import { toggleDark } from '@/helpers/toggleDark.js';
+import toggleDarkSwitch from "@/components/toggleDarkSwitch.vue";
 import { ref } from 'vue'
 
 // Declares initial login and password fiels and make it reactive.
