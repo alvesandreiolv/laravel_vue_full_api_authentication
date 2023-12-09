@@ -19,9 +19,9 @@
       <div class="grid">
 
         <!-- Markup example 1: input is inside label -->
-        <label for="fullname">
-          Full name
-          <input v-model="fullname" type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+        <label for="name">
+          Display name
+          <input v-model="name" type="text" id="name" name="name" placeholder="John Doe" required>
         </label>
 
         <!-- Markup example 2: input is after label -->
@@ -81,7 +81,7 @@ import axios from 'axios';
 import { notify } from '@/services/notificator.js';
 import { ref, watch } from 'vue'
 
-const fullname = ref('');
+const name = ref('');
 const email = ref('');
 const password = ref('');
 const confirmpassword = ref('');
@@ -92,7 +92,7 @@ const passwordsDoesntMatch = ref(null);
 const isExecutingUpdate = ref(false);
 
 function executeCreateAccount() {
-  //console.log(fullname.value + '\n' + email.value + '\n' + password.value + '\n' + confirmpassword.value);
+  //console.log(name.value + '\n' + email.value + '\n' + password.value + '\n' + confirmpassword.value);
 }
 
 // Check if password input has changed, if yes, removes errors from screen. 

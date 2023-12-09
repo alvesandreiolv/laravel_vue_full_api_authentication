@@ -14,7 +14,7 @@
     </label>
     <!-- Shows errors -->
     <ul id="formErrorList">
-      <div v-if="displayErrors && errorMessages.length > 0">
+      <div v-if="displayErrors && ((typeof errorMessages !== 'undefined') && (errorMessages.length > 0))">
         <li v-for="errorMessage in errorMessages" :key="errorMessage">{{ errorMessage }}</li>
       </div>
     </ul>
@@ -29,8 +29,8 @@
       <label for="currentpassword">
         <small>In order to proceed, please provide your current password:</small>
         <input type="password" id="currentpassword" name="currentpassword" v-model="currentpassword"
-          placeholder="Current password" v-on:keyup.enter="toggleUpdateNameModal('close'), executeUpdateName()"
-          required autofocus>
+          placeholder="Current password" v-on:keyup.enter="toggleUpdateNameModal('close'), executeUpdateName()" required
+          autofocus>
       </label>
       <footer>
         <button @click="toggleUpdateNameModal('close')" role="button" class="secondary">Cancel</button>
@@ -70,6 +70,8 @@ const displayErrors = ref(null);
 const errorMessages = ref([])
 const isExecutingUpdate = ref(false);
 const showUpdateSuccessMessage = ref(false);
+
+console.log(errorMessages.length);
 
 // Toggle modal for current password confirmation. 
 function toggleUpdateNameModal(action) {

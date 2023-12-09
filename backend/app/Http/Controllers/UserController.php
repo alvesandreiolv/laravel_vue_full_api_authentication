@@ -29,6 +29,12 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()->all()], 422);
         }
+
+        // Request is valid, now proceed --
+
+        //For testing
+        return response()->json(['message' => 'Would have created the account.'], 200);
+
     }
 
     public function changeName(Request $request)
