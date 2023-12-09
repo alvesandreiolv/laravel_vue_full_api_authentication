@@ -2,22 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
-use App\Models\User;
 
 class UserController extends Controller
 {
 
-    public function changeUsername(Request $request)
+    public function register(Request $request)
+    {
+        // Validate the incoming request data.
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:2|max:255|regex:/^[\pL\s.]+$/u',
+            'email' => 'required|email',
+            'password' => [
+                'required',
+                'string',
+                'max:20',
+                Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(),
+            ],
+        ]);
+
+        // Check if validation fails and return errors.
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()->all()], 422);
+        }
+    }
+
+    public function changeName(Request $request)
     {
 
         // Validate the incoming request data.
         $validator = Validator::make($request->all(), [
             'password' => 'required',
-            'new_username' => 'required|alpha_num|min:10|max:25',
+            'new_name' => 'required|min:2|max:255|regex:/^[\pL\s.]+$/u',
         ]);
 
         // Check if validation fails and return errors.
@@ -31,23 +51,24 @@ class UserController extends Controller
         }
 
         // Check if new username is not the same of current one.
-        if (auth()->user()->email == $request->new_username) {
+        if (auth()->user()->email == $request->new_name) {
             return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username cannot be equal to current one.']], 422);
         }
 
         // Check if the new username already exists for another user.
-        if (User::where('email', $request->new_username)->exists()) {
-            return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username is already taken.']], 422);
-        }
+        /* (Deprecated since it will use emails for unique login ID.)
+        if (User::where('email', $request->new_name)->exists()) {
+        return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username is already taken.']], 422);
+        } */
 
-        // Request is valid, now proceed...
+        // Request is valid, now proceed --
 
         // Update the user's username.
-        auth()->user()->email = $request->new_username;
+        auth()->user()->email = $request->new_name;
         auth()->user()->save();
 
         //Return success message.
-        return response()->json(['message' => 'Username was changed.'], 200);
+        return response()->json(['message' => 'Display name was changed.'], 200);
     }
 
     public function changePassword(Request $request)

@@ -3,9 +3,9 @@
 
   <div class="grid">
     <!-- Change my username button -->
-    <router-link :to="{ name: 'Change Username' }" style="text-decoration: none; color: inherit;">
+    <router-link :to="{ name: 'Change Name' }" style="text-decoration: none; color: inherit;">
       <button class="menuButton secondary outline" @click="buttonLoading($event)"><i
-          class="fa-regular fa-pen-to-square"></i> Change my username</button>
+          class="fa-regular fa-pen-to-square"></i> Change my display name</button>
     </router-link>
     <!-- Change my password button -->
     <router-link :to="{ name: 'Change Password' }" style="text-decoration: none; color: inherit;">

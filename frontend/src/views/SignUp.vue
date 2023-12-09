@@ -1,6 +1,12 @@
 <template>
   <main id="mainContainer" class="container">
 
+    <nav aria-label="breadcrumb">
+      <ul>
+        <li><a href="/"><i class="fa-regular fa-circle-left"></i> Go back to main page</a></li>
+      </ul>
+    </nav>
+
     <hgroup>
       <h1>Forms</h1>
       <h2>All form elements are fully responsive in pure semantic HTML, allowing forms to scale gracefully across devices
@@ -39,7 +45,7 @@
 
         <label for="confirmpassword">
           Confirm password <span id="passwordsDoesntMatchAlert" v-if="passwordsDoesntMatch">Passwords doesn't
-          match</span>
+            match</span>
           <input v-model="confirmpassword" type="password" id="confirmpassword" name="confirmpassword"
             placeholder="Confirm password" :aria-invalid="passwordsDoesntMatch" required>
         </label>

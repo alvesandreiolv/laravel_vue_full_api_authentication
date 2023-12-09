@@ -45,7 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // Route for changing username
-    Route::post('/changeusername', [UserController::class, 'changeUsername']);
+    Route::post('/changename', [UserController::class, 'changeName']);
 
     // Route for changing password
     Route::post('/changepassword', [UserController::class, 'changePassword']);

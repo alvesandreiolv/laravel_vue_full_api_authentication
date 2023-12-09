@@ -1,12 +1,12 @@
 <!-- In this page, the user can change it's current username. -->
 <template>
-  <TheDashboardPageHeader title="Change username" content="Please fill the required fields below." />
+  <TheDashboardPageHeader title="Change display name" content="Please fill the required fields below." />
 
   <!-- The form itself -->
-  <form @submit.prevent="toggleUpdateUsernameModal('open')">
-    <label for="username">
-      Your current username is: <code :aria-busy="userData.userDataIsLoading">{{ userData.email }}</code>
-      <input type="text" id="username" name="username" maxlength="25" placeholder="Insert new username" v-model="username"
+  <form @submit.prevent="toggleUpdateNameModal('open')">
+    <label for="name">
+      Your current display name is: <code :aria-busy="userData.userDataIsLoading">{{ userData.name }}</code>
+      <input type="text" id="name" name="name" maxlength="25" placeholder="Insert new name" v-model="name"
         :aria-invalid="displayErrors" required>
       <small>Must be between 10 and 25 characters, only letters and numbers.</small>
       <!-- Show small success message -->
@@ -19,22 +19,22 @@
       </div>
     </ul>
     <!-- Button -->
-    <button type="submit" :aria-busy="isExecutingUpdate" :disabled="isExecutingUpdate">Save username</button>
+    <button type="submit" :aria-busy="isExecutingUpdate" :disabled="isExecutingUpdate">Save display name</button>
   </form>
 
   <!-- The modal used for this page's form. -->
-  <dialog id="updateUsernameModal">
+  <dialog id="UpdateNameModal">
     <article>
       <h3>Confirm your action</h3>
       <label for="currentpassword">
         <small>In order to proceed, please provide your current password:</small>
         <input type="password" id="currentpassword" name="currentpassword" v-model="currentpassword"
-          placeholder="Current password" v-on:keyup.enter="toggleUpdateUsernameModal('close'), executeUpdateUsername()"
+          placeholder="Current password" v-on:keyup.enter="toggleUpdateNameModal('close'), executeUpdateName()"
           required autofocus>
       </label>
       <footer>
-        <button @click="toggleUpdateUsernameModal('close')" role="button" class="secondary">Cancel</button>
-        <button :disabled="!currentpassword" @click="toggleUpdateUsernameModal('close'), executeUpdateUsername()"
+        <button @click="toggleUpdateNameModal('close')" role="button" class="secondary">Cancel</button>
+        <button :disabled="!currentpassword" @click="toggleUpdateNameModal('close'), executeUpdateName()"
           role="button">Confirm</button>
       </footer>
     </article>
@@ -42,11 +42,11 @@
 </template>
 
 <style>
-#updateUsernameModal footer {
+#UpdateNameModal footer {
   margin-top: 0px;
 }
 
-#updateUsernameModal button {
+#UpdateNameModal button {
   display: inline;
   width: fit-content;
 }
@@ -64,7 +64,7 @@ import { openModal, closeModal } from '@/helpers/modal.js';
 // Update user data if it's missing
 updateMissingUserData();
 
-const username = ref('');
+const name = ref('');
 const currentpassword = ref('');
 const displayErrors = ref(null);
 const errorMessages = ref([])
@@ -72,34 +72,34 @@ const isExecutingUpdate = ref(false);
 const showUpdateSuccessMessage = ref(false);
 
 // Toggle modal for current password confirmation. 
-function toggleUpdateUsernameModal(action) {
+function toggleUpdateNameModal(action) {
   if (action == 'open') {
-    openModal(document.getElementById("updateUsernameModal"));
+    openModal(document.getElementById("UpdateNameModal"));
   } else {
-    closeModal(document.getElementById("updateUsernameModal"));
+    closeModal(document.getElementById("UpdateNameModal"));
   }
 }
 
 // In fact tries to update data in server.
-function executeUpdateUsername() {
+function executeUpdateName() {
   // Starts the loader
   isExecutingUpdate.value = true;
   // Send information to server.
-  axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/changeusername', {
+  axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/changename', {
     password: currentpassword.value,
-    new_username: username.value,
+    new_name: name.value,
   }, {
     headers: {
       'Authorization': 'Bearer ' + getToken(),
     },
     timeout: 30000
   }).then(response => {
-    // Resets usernamed field.
-    username.value = '';
+    // Resets name field.
+    name.value = '';
     // Updates user basica data.
     forceUpdateUserData();
     // Opens notification
-    notify('Your username was updated successfully', 'success');
+    notify('Your display name was updated successfully', 'success');
     // Show update success messsage
     showUpdateSuccessMessage.value = true;
   }).catch(err => {
@@ -110,7 +110,7 @@ function executeUpdateUsername() {
     // Set to display error block element
     displayErrors.value = true;
     // Opens notification.
-    notify('Username update failed', 'warning');
+    notify('Display name update failed', 'warning');
     //If the fail is a 402, will check if the password is correct.
     if (err.response.status == 401) {
       checkToken(true);
@@ -123,12 +123,12 @@ function executeUpdateUsername() {
   })
 }
 
-// Check if username input has changed, if yes, removes error from screen. 
-watch(username, () => {
+// Check if name input has changed, if yes, removes error from screen. 
+watch(name, () => {
   // Hide error block element
   displayErrors.value = null;
-  // If username field is changed and is not empty 
-  if (username.value !== '') {
+  // If name field is changed and is not empty 
+  if (name.value !== '') {
     //Show success message
     showUpdateSuccessMessage.value = false;
   }

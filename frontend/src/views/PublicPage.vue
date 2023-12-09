@@ -10,8 +10,6 @@
         <a href="/login" role="button">Go to login</a>
         <a href="/home" role="button">Go to dashboard</a>
         <a href="#" role="button" @click="toggleDark()" class="secondary">Toggle dark-light</a>
-        <a href="#" role="button" @click="notify('This is a test notification.')" class="secondary" id="testeBotao1">Test
-          notification</a>
         <a href="/signup" role="button" class="contrast">Sign Up</a>
       </p>
     </section>
@@ -33,6 +31,4 @@
 <script setup>
 //Adds toggleDark.
 import { toggleDark } from '../helpers/toggleDark.js';
-//Adds notification.
-import { notify } from '@/services/notificator.js';
 </script>

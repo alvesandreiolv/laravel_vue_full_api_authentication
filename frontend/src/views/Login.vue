@@ -11,7 +11,7 @@
           <h2>A minimalist layout for Login pages</h2>
         </hgroup>
         <form @submit.prevent="executeLogin">
-          <input :disabled="isLoading" v-model="email" type="text" name="email" placeholder="Login" aria-label="Login"
+          <input :disabled="isLoading" v-model="email" type="email" name="email" placeholder="Email" aria-label="Email"
             autocomplete="nickname" required />
           <input :disabled="isLoading" v-model="password" type="password" name="password" placeholder="Password"
             aria-label="Password" autocomplete="current-password" required />
@@ -30,7 +30,7 @@
   <!-- ./ Main -->
 </template>
 
- <style scoped>
+<style scoped>
 /* My personal below */
 .grid {
   margin: 0 20px;

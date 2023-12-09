@@ -49,11 +49,11 @@ const routes = [
               ),
           },
           {
-            name: "Change Username",
-            path: "changeusername",
+            name: "Change Name",
+            path: "changename",
             component: () =>
               import(
-                "../views/dashboardViews/settingsViews/ChangeUsername.vue"
+                "../views/dashboardViews/settingsViews/ChangeName.vue"
               ),
           },
         ],
