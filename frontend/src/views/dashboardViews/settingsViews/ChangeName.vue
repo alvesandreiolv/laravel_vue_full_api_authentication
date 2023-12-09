@@ -71,8 +71,6 @@ const errorMessages = ref([])
 const isExecutingUpdate = ref(false);
 const showUpdateSuccessMessage = ref(false);
 
-console.log(errorMessages.length);
-
 // Toggle modal for current password confirmation. 
 function toggleUpdateNameModal(action) {
   if (action == 'open') {
@@ -98,7 +96,7 @@ function executeUpdateName() {
   }).then(response => {
     // Resets name field.
     name.value = '';
-    // Updates user basica data.
+    // Force update user basic data.
     forceUpdateUserData();
     // Opens notification
     notify('Your display name was updated successfully', 'success');

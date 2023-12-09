@@ -8,9 +8,9 @@
     </nav>
 
     <hgroup>
-      <h1>Forms</h1>
-      <h2>All form elements are fully responsive in pure semantic HTML, allowing forms to scale gracefully across devices
-        and viewports.</h2>
+      <h1>Sign up</h1>
+      <h2>Complete the form below in order to create a new account. Following this step, you will be
+        required to log.</h2>
     </hgroup>
 
     <form @submit.prevent="executeCreateAccount()">
@@ -80,6 +80,7 @@
 import axios from 'axios';
 import { notify } from '@/services/notificator.js';
 import { ref, watch } from 'vue'
+import { getToken } from '@/services/authenticator.js';
 
 const name = ref('');
 const email = ref('');
@@ -94,22 +95,19 @@ const isExecutingUpdate = ref(false);
 function executeCreateAccount() {
   // Starts the loader
   isExecutingUpdate.value = true;
-    // Send information to server.
-    axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/register', {
-    password: currentpassword.value,
-    new_name: name.value,
+  // Send information to server.
+  axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/register', {
+    name: name.value,
+    email: email.value,
+    password: password.value,
   }, {
     headers: {
       'Authorization': 'Bearer ' + getToken(),
     },
     timeout: 30000
   }).then(response => {
-    // Resets name field.
-    name.value = '';
-    // Updates user basica data.
-    forceUpdateUserData();
     // Opens notification
-    notify('Your display name was updated successfully', 'success');
+    notify('Yoaacessfully', 'success');
     // Show update success messsage
     showUpdateSuccessMessage.value = true;
   }).catch(err => {
@@ -120,11 +118,7 @@ function executeCreateAccount() {
     // Set to display error block element
     displayErrors.value = true;
     // Opens notification.
-    notify('Display name update failed', 'warning');
-    //If the fail is a 402, will check if the password is correct.
-    if (err.response.status == 401) {
-      checkToken(true);
-    }
+    notify('Displaaled', 'warning');
   }).finally(() => {
     // Whatever happens, reset password ref.
     currentpassword.value = '';

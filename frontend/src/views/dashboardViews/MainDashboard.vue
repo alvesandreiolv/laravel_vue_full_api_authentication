@@ -9,7 +9,7 @@
         <img src="../../assets/images/lightSwitch.png" alt="Light Switch">
       </li>
       <li>
-        <a href="/">Main</a>
+        <router-link to="/">Main</router-link>
       </li>
       <li>
         <a @click="executeLogout($event)" href="#" @click.prevent>Logout</a>
