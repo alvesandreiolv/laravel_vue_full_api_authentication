@@ -51,7 +51,7 @@ class UserController extends Controller
         }
 
         // Check if new username is not the same of current one.
-        if (auth()->user()->email == $request->new_name) {
+        if (auth()->user()->name == $request->new_name) {
             return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username cannot be equal to current one.']], 422);
         }
 
@@ -64,7 +64,7 @@ class UserController extends Controller
         // Request is valid, now proceed --
 
         // Update the user's username.
-        auth()->user()->email = $request->new_name;
+        auth()->user()->name = $request->new_name;
         auth()->user()->save();
 
         //Return success message.
