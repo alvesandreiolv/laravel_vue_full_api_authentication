@@ -92,7 +92,45 @@ const passwordsDoesntMatch = ref(null);
 const isExecutingUpdate = ref(false);
 
 function executeCreateAccount() {
-  //console.log(name.value + '\n' + email.value + '\n' + password.value + '\n' + confirmpassword.value);
+  // Starts the loader
+  isExecutingUpdate.value = true;
+    // Send information to server.
+    axios.post(import.meta.env.VITE_BASE_BACKEND_URL + '/api/register', {
+    password: currentpassword.value,
+    new_name: name.value,
+  }, {
+    headers: {
+      'Authorization': 'Bearer ' + getToken(),
+    },
+    timeout: 30000
+  }).then(response => {
+    // Resets name field.
+    name.value = '';
+    // Updates user basica data.
+    forceUpdateUserData();
+    // Opens notification
+    notify('Your display name was updated successfully', 'success');
+    // Show update success messsage
+    showUpdateSuccessMessage.value = true;
+  }).catch(err => {
+    // Print errors
+    if (typeof err.response.data !== 'undefined') {
+      errorMessages.value = err.response.data.errors;
+    }
+    // Set to display error block element
+    displayErrors.value = true;
+    // Opens notification.
+    notify('Display name update failed', 'warning');
+    //If the fail is a 402, will check if the password is correct.
+    if (err.response.status == 401) {
+      checkToken(true);
+    }
+  }).finally(() => {
+    // Whatever happens, reset password ref.
+    currentpassword.value = '';
+    // Whatever happens, stops the loading.
+    isExecutingUpdate.value = false;
+  })
 }
 
 // Check if password input has changed, if yes, removes errors from screen. 

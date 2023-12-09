@@ -16,17 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// -- Public routes below -------
+// -- Public routes below ----
 
 // The public login route.
 Route::post('/login', [AuthController::class, 'login']);
+
+// The public register route.
+Route::post('/register', [UserController::class, 'register']);
 
 // Public route to check if this app is online.
 Route::get('/uptime', function (Request $request) {
     return response()->json(['message' => 'This service is online.'], 200);
 });
 
-// -- Internal/Private routes below -------
+// -- Private routes below ----
 
 // Group that requires user to be authenticated
 Route::middleware(['auth:sanctum'])->group(function () {
