@@ -7,10 +7,10 @@
         The porpuse of this is to test vue routes. I can now go to login page and dashboard page.
       </p>
       <p class="grid">
-        <a href="/login" role="button">Go to login page</a>
-        <a href="/home" role="button">Go to dashboard page</a>
-        <a href="#" @click="toggleDark()" role="button" class="secondary">Toggle dark-light mode</a>
-        <a href="#" @click="notify('This is a test notification.')" role="button" class="secondary" id="testeBotao1">Test
+        <a href="/login" role="button">Go to login</a>
+        <a href="/home" role="button">Go to dashboard</a>
+        <a href="#" role="button" @click="toggleDark()" class="secondary">Toggle dark-light</a>
+        <a href="#" role="button" @click="notify('This is a test notification.')" class="secondary" id="testeBotao1">Test
           notification</a>
         <a href="/signup" role="button" class="contrast">Sign Up</a>
       </p>
@@ -22,6 +22,11 @@
 #mainContainer {
   padding-top: 100px;
   padding-bottom: 100px;
+}
+
+#mainContainer a {
+  margin-bottom: var(--spacing);
+  align-self: center;
 }
 </style>
 

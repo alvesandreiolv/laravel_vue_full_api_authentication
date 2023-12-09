@@ -51,11 +51,6 @@
 </template>
 
 <style>
-#passwordsDoesntMatchAlert {
-  color: red;
-  font-size: 16px;
-}
-
 #UpdatePasswordModal footer {
   margin-top: 0px;
 }
