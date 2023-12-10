@@ -2,9 +2,12 @@
   <!-- Toggle Dark/Light Switch-->
   <ToggleDarkSwitch :absolutePosition="true" />
   <main id="mainContainer" class="container">
+    
     <!-- Typography-->
     <section id="typography">
+      
       <h2>This would be a public website page.</h2>
+      
       <p>
         The porpuse of this is to test vue routes. I can now go to login page and dashboard page.
       </p>

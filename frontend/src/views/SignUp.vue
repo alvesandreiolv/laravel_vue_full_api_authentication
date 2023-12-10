@@ -70,7 +70,6 @@
 }
 
 #formErrorList {
-  margin-bottom: 0;
 }
 </style>
 
@@ -118,10 +117,11 @@ function executeCreateAccount() {
     // Set to display error block element
     displayErrors.value = true;
     // Opens notification.
-    notify('Displaaled', 'warning');
+    notify('Sign up attempt failed.', 'warning');
   }).finally(() => {
     // Whatever happens, reset password ref.
-    currentpassword.value = '';
+    password.value = '';
+    confirmpassword.value = '';
     // Whatever happens, stops the loading.
     isExecutingUpdate.value = false;
   })

@@ -13,10 +13,10 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        // Validate the incoming request data.
+        //Validate the incoming request data.
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:2|max:255|regex:/^[\pL\s.]+$/u',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => [
                 'required',
                 'string',
@@ -25,12 +25,14 @@ class UserController extends Controller
             ],
         ]);
 
-        // Check if validation fails and return errors.
+        //Check if validation fails and return errors.
         if ($validator->fails()) {
             return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()->all()], 422);
         }
 
-        // Request is valid, now proceed --
+        //Check if email doesn't already exists.
+
+        //Request is valid, now proceed --
 
         //For testing
         return response()->json(['message' => 'Would have created the account.'], 200);
