@@ -31,17 +31,13 @@ class UserController extends Controller
         }
 
         //Request is valid, now proceed --
-        try {
-            $user = User::create([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
-            ]);
-        
-            return response()->json(['message' => 'Account was created successfully.'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed to create the account.', 'error' => $e->getMessage()], 500);
-        }
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        return response()->json(['message' => 'Account was created successfully.'], 200);
 
     }
 
