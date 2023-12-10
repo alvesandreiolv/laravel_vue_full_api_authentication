@@ -106,9 +106,9 @@ function executeCreateAccount() {
     timeout: 30000
   }).then(response => {
     // Opens notification
-    notify('Yoaacessfully', 'success');
+    notify('Sign up successful', 'success');
     // Show update success messsage
-    showUpdateSuccessMessage.value = true;
+    //showUpdateSuccessMessage.value = true;
   }).catch(err => {
     // Print errors
     if (typeof err.response.data !== 'undefined') {
@@ -117,7 +117,7 @@ function executeCreateAccount() {
     // Set to display error block element
     displayErrors.value = true;
     // Opens notification.
-    notify('Sign up attempt failed.', 'warning');
+    notify('Sign up attempt failed', 'warning');
   }).finally(() => {
     // Whatever happens, reset password ref.
     password.value = '';

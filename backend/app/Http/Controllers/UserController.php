@@ -30,12 +30,18 @@ class UserController extends Controller
             return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()->all()], 422);
         }
 
-        //Check if email doesn't already exists.
-
         //Request is valid, now proceed --
-
-        //For testing
-        return response()->json(['message' => 'Would have created the account.'], 200);
+        try {
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+            ]);
+        
+            return response()->json(['message' => 'Account was created successfully.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to create the account.', 'error' => $e->getMessage()], 500);
+        }
 
     }
 
@@ -62,12 +68,6 @@ class UserController extends Controller
         if (auth()->user()->name == $request->new_name) {
             return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username cannot be equal to current one.']], 422);
         }
-
-        // Check if the new username already exists for another user.
-        /* (Deprecated since it will use emails for unique login ID.)
-        if (User::where('email', $request->new_name)->exists()) {
-        return response()->json(['message' => 'Data provided is invalid.', 'errors' => ['The new username is already taken.']], 422);
-        } */
 
         // Request is valid, now proceed --
 
