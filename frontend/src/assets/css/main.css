@@ -1,18 +1,18 @@
 /* THIS FILE IS FOR SITEWIDE CSS */
 
 .menuButton {
-  transition: transform 0.1s;
+  transition: transform 0.07s;
   cursor: pointer;
   overflow: hidden;
   text-align: center;
 }
 
 .menuButton:hover {
-  transform: scale(0.95);
+  transform: scale(1.03);
 }
 
 .menuButton:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
 #formErrorList li {

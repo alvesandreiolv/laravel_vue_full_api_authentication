@@ -34,12 +34,12 @@
 }
 
 #lightSwitch:hover {
-    transform: rotate(10deg);
+    transform: scale(1.1);
     opacity: 1;
 }
 
 #lightSwitch:active {
-    transform: rotate(30deg) !important;
+    transform: scale(0.9);
 }
 
 #lightSwitch img {
