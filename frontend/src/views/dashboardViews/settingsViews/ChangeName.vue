@@ -55,10 +55,10 @@
 <script setup>
 import DashboardPageHeader from "@/components/DashboardPageHeader.vue";
 import axios from 'axios';
+import { getToken, checkToken } from '@/services/authenticator.js';
 import { userData, forceUpdateUserData, updateMissingUserData } from '@/store/userBasicData.js';
 import { notify } from '@/services/notificator.js';
 import { ref, watch } from 'vue'
-import { getToken, checkToken } from '@/services/authenticator.js';
 import { openModal, closeModal } from '@/helpers/modal.js';
 
 // Update user data if it's missing
