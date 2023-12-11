@@ -1,0 +1,1 @@
+import{_ as o,o as s,c as t,p as c,e as _,b as a}from"./index-623f2cc7.js";const n={},d=e=>(c("data-v-46be9b02"),e=e(),_(),e),p={class:"center-container"},r=d(()=>a("h4",{id:"message404"},"404 - This page could not be found",-1)),i=[r];function u(e,b){return s(),t("div",p,i)}const l=o(n,[["render",u],["__scopeId","data-v-46be9b02"]]);export{l as default};

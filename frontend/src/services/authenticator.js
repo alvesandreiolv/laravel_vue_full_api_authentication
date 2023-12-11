@@ -25,7 +25,7 @@ async function login(email, password, remember = false) {
     // Updates user basica data.
     forceUpdateUserData();
     //Opens notification.
-    notify('You have succefully logged in.', 'success');
+    notify('You have succefully logged in', 'success');
   }).catch(err => {
     //If error, checks the kind of error and retuns message.
     if (typeof err.response !== 'undefined') {
@@ -52,13 +52,13 @@ function logout() {
     timeout: 10000, // Set the timeout value in milliseconds (5 seconds in this example) 
   }).then(response => {
     //Sends success notification.
-    notify('You have been logged out.');
+    notify('You have been logged out');
   }).catch(err => {
     //If indeed not authenticated.
     if ((typeof err.request !== 'undefined') && (err.request.status == 401)) {
-      notify('Your session may already be expired.', 'warning', 5000);
+      notify('Your session may already be expired', 'warning', 5000);
     } else {
-      notify('Logout attempt failed: Unknown.', 'danger', 5000);
+      notify('Logout attempt failed: Unknown', 'danger', 5000);
     }
   })
   //Removes auth token from browser.
