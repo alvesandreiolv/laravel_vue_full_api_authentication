@@ -28,10 +28,14 @@ async function login(email, password, remember = false) {
     notify('You have succefully logged in.', 'success');
   }).catch(err => {
     //If error, checks the kind of error and retuns message.
-    if ((typeof err.response !== 'undefined') && err.response.data.message == 'Invalid credentials') {
-      notify('Login Failed: Invalid credentials.', 'warning');
-    } else {
-      notify('Login Failed: Try again later.', 'warning');
+    if (typeof err.response !== 'undefined') {
+      if (err.response.status == 401) {
+        notify('Invalid credentials', 'warning');
+      } else if (err.response.status == 429) {
+        notify('Too many attemps, try again later', 'danger', '5000');
+      } else {
+        notify('Login attempt failed, try again later', 'warning', '10000');
+      }
     }
     //Throws error so can be read by who called this function.
     throw new Error("Login failed.");
