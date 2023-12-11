@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 // -- Public routes below ----
 
-// The public login route.
-Route::post('/login', [AuthController::class, 'login']);
-
-// The public register route.
-Route::post('/register', [UserController::class, 'register']);
+// Throttled group for public routes
+Route::middleware('throttle:10,1')->group(function () {
+    // The public login route.
+    Route::post('/login', [AuthController::class, 'login']);
+    // The public register route.
+    Route::post('/register', [UserController::class, 'register']);
+});
 
 // Public route to check if this app is online.
 Route::get('/uptime', function (Request $request) {
