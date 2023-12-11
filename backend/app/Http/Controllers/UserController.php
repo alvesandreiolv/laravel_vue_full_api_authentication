@@ -58,8 +58,14 @@ class UserController extends Controller
             return response()->json(['message' => 'Unauthorized.', 'errors' => ['Current password is incorrect.']], 401);
         }
 
+        //Delete ALL user tokens, thus revoking his access.
+        $request->user()->tokens()->delete();
+
+        //Now soft delete the user.
+        auth()->user()->delete();
+
         //Return success message.
-        return response()->json(['message' => 'Would have deactivated the account.'], 200);
+        return response()->json(['message' => 'You have deactivated your account successfully.'], 200);
 
     }
 
