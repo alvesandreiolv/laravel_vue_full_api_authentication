@@ -14,7 +14,8 @@
     </router-link>
     <!-- Delete my account button -->
     <button @click="toggleDeactivateModal('open')" class="menuButton outline"
-      style="color: #d81b60 !important; border-color: #d81b60 !important;" :aria-busy="isExecutingDeactivation"><i class="fa-regular fa-trash-can"></i>
+      style="color: #d81b60 !important; border-color: #d81b60 !important;" :aria-busy="isExecutingDeactivation"><i
+        class="fa-regular fa-trash-can"></i>
       Deactivate my account</button>
   </div>
 
@@ -62,6 +63,7 @@ function toggleDeactivateModal(action) {
   }
 }
 
+//Executes user deactivation
 function executeDeactivation() {
   //Starts loading animation
   isExecutingDeactivation.value = true;

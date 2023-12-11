@@ -3,9 +3,11 @@
   <ToggleDarkSwitch :absolutePosition="true" />
   <!-- Main -->
   <main class="container">
+
     <article class="grid">
       <div>
         <hgroup>
+          <!-- Back to main page button <GoBackToMainButton /> -->
           <!-- Main login page text -->
           <h1>Sign in</h1>
           <h2>A minimalist layout for Login pages</h2>
@@ -22,9 +24,8 @@
             </label>
           </fieldset>
           <button type="submit" class="contrast" :aria-busy="isLoading">Login</button>
+          <small><router-link to="/signup">New here? Sign up</router-link></small>
         </form>
-        <!-- Back to main page button -->
-        <GoBackToMainButton />
       </div>
       <div></div>
     </article>
@@ -32,8 +33,41 @@
   <!-- ./ Main -->
 </template>
 
+<script setup>
+import { login } from '@/services/authenticator.js';
+import ToggleDarkSwitch from "@/components/ToggleDarkSwitch.vue";
+import { ref } from 'vue'
+import GoBackToMainButton from "@/components/GoBackToMainButton.vue";
+
+// Declares initial login and password fiels and make it reactive.
+const email = ref('')
+const password = ref('')
+const remember = ref(false)
+const isLoading = ref(false)
+
+// Below, starts loading animation and try to login.
+async function executeLogin() {
+  try {
+    isLoading.value = true;
+    await login(email.value, password.value, remember.value);
+  } catch (error) {
+    //console.log(error)
+    //Stops loading only if fails.
+    isLoading.value = false;
+  } finally {
+    //Anything that happens, erases password.
+    password.value = '';
+  }
+}
+</script>
+
 <style scoped>
 /* My personal below */
+
+form {
+  margin-bottom: 0px;
+}
+
 .grid {
   margin: 0 20px;
 }
@@ -122,31 +156,3 @@ body>footer {
   padding: 1rem 0;
 }
 </style>
-
-<script setup>
-import { login } from '@/services/authenticator.js';
-import ToggleDarkSwitch from "@/components/ToggleDarkSwitch.vue";
-import { ref } from 'vue'
-import GoBackToMainButton from "@/components/GoBackToMainButton.vue";
-
-// Declares initial login and password fiels and make it reactive.
-const email = ref('')
-const password = ref('')
-const remember = ref(false)
-const isLoading = ref(false)
-
-// Below, starts loading animation and try to login.
-async function executeLogin() {
-  try {
-    isLoading.value = true;
-    await login(email.value, password.value, remember.value);
-  } catch (error) {
-    //console.log(error)
-    //Stops loading only if fails.
-    isLoading.value = false;
-  } finally {
-    //Anything that happens, erases password.
-    password.value = '';
-  }
-}
-</script>
