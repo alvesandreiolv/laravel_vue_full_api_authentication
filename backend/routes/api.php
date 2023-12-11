@@ -53,4 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Route for changing password
     Route::post('/changepassword', [UserController::class, 'changePassword']);
 
+    // Route for deactivating own account.
+    Route::post('/deactivate', [UserController::class, 'deactivate']);
+
 });

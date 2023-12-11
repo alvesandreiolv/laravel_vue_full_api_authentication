@@ -41,6 +41,28 @@ class UserController extends Controller
 
     }
 
+    public function deactivate(Request $request)
+    {
+        // Validate the incoming request data.
+        $validator = Validator::make($request->all(), [
+            'password' => 'required',
+        ]);
+
+        // Check if validation fails and return errors.
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Validation failed.', 'errors' => $validator->errors()->all()], 422);
+        }
+
+        // Check if password is correct.
+        if (!Hash::check($request->password, auth()->user()->password)) {
+            return response()->json(['message' => 'Unauthorized.', 'errors' => ['Current password is incorrect.']], 401);
+        }
+
+        //Return success message.
+        return response()->json(['message' => 'Would have deactivated the account.'], 200);
+
+    }
+
     public function changeName(Request $request)
     {
 
