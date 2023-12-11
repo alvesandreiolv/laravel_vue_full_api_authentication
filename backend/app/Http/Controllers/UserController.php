@@ -31,13 +31,15 @@ class UserController extends Controller
         }
 
         //Request is valid, now proceed --
+
+        //Creates the user in the database.
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
 
-        return response()->json(['message' => 'Account was created successfully.'], 200);
+        return response()->json(['message' => 'The new user was registered successfully.'], 200);
 
     }
 
@@ -57,6 +59,8 @@ class UserController extends Controller
         if (!Hash::check($request->password, auth()->user()->password)) {
             return response()->json(['message' => 'Unauthorized.', 'errors' => ['Current password is incorrect.']], 401);
         }
+
+        // Request is valid, now proceed...
 
         //Delete ALL user tokens, thus revoking his access.
         $request->user()->tokens()->delete();

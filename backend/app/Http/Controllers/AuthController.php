@@ -25,7 +25,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()->all()], 422);
         }
 
-        //Check if credentials are valid.
+        //Check if credentials are valid, soft deleted users are automatically invalid by default.
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
