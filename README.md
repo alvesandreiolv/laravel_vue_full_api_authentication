@@ -1,4 +1,4 @@
-# Laravel/Vue.js fullstack API demo.
+# Laravel/Vue.js fullstack API demo
 
 Dashboard panel with authentication, sign up, and settings update.
 
@@ -87,7 +87,7 @@ PT: Este projeto utiliza o armazenamento local do navegador para salvar a chave 
 
 ## Images
 
-![Alt login](image https://i.imgur.com/xiDfD4D.png)
-![Alt signup](image https://i.imgur.com/cDopcom.png)
-![Alt dashboard](image https://i.imgur.com/mqhQBqg.png)
-![Alt change password](image https://i.imgur.com/mvIM0q1.png)
+![Alt login](https://i.imgur.com/xiDfD4D.png)
+![Alt signup](https://i.imgur.com/cDopcom.png)
+![Alt dashboard](https://i.imgur.com/mqhQBqg.png)
+![Alt change password](https://i.imgur.com/mvIM0q1.png)
