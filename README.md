@@ -1,4 +1,6 @@
-# Laravel/Vue.js fullstack API demo. Dashboard panel with authentication, sign up, and settings update.
+# Laravel/Vue.js fullstack API demo.
+
+Dashboard panel with authentication, sign up, and settings update.
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -79,6 +81,13 @@ PT:
 
 ## Important
 
-EN: This project uses the local storage in browser to save the authentication key. It works like this: When you log in with your credentials, the backend awnsers the request by providing an authentication key to be stored and used for all the further requests. This key is managed in the backend for checking it's validation and expiry. For this project, it's been chosen to use "localStorage" to store the key. <b>This is not the safest way, given that it's vulnerable to XSS attacks,</b> but it's definitely the easiest approach to implement. Laravel comes with this approach by default. Therefore, <b>by proceeding using this method, please always be highly sure that your frontend has no any XSS vulnerability.</b>. The key is encrypted to provide further protection, but won't be secure in a XSS scenario. 
+EN: This project uses the local storage in browser to save the authentication key. When you log in with your credentials, the backend awnsers the request by providing an authentication key to be stored and used for all the further requests. This key is managed in the backend for checking it's validation and expiry. For this project, it's been chosen to use "localStorage" to store the key. <b>This is not the safest way, given that it's vulnerable to XSS attacks,</b> but it's definitely the easiest approach to implement. Laravel comes with this approach by default. Therefore, <b>by proceeding using this method, please always be highly sure that your frontend has no any XSS vulnerability.</b>. The key is encrypted to provide further protection, but won't be secure in a XSS scenario. 
 
-PT: Este projeto utiliza o armazenamento local do navegador para salvar a chave de autenticação. Funciona da seguinte maneira: quando você faz login com suas credenciais, o backend responde à solicitação fornecendo uma chave de autenticação para ser armazenada e usada em todas as solicitações subsequentes. Essa chave é gerenciada no backend para verificar sua validação e expiração. Para este projeto, foi escolhido usar "localStorage" para armazenar a chave. <b>Este não é o método mais seguro, pois é vulnerável a ataques XSS,</b> mas é definitivamente a abordagem mais fácil de implementar. O Laravel utiliza essa abordagem por padrão. Portanto, <b>ao prosseguir com esse método, certifique-se sempre de que seu frontend não tenha nenhuma vulnerabilidade XSS.</b> A chave é criptografada para fornecer proteção adicional, mas não será segura em um cenário de XSS.
+PT: Este projeto utiliza o armazenamento local do navegador para salvar a chave de autenticação. Quando você faz login com suas credenciais, o backend responde à solicitação fornecendo uma chave de autenticação para ser armazenada e usada em todas as solicitações subsequentes. Essa chave é gerenciada no backend para verificar sua validação e expiração. Para este projeto, foi escolhido usar "localStorage" para armazenar a chave. <b>Este não é o método mais seguro, pois é vulnerável a ataques XSS,</b> mas é definitivamente a abordagem mais fácil de implementar. O Laravel utiliza essa abordagem por padrão. Portanto, <b>ao prosseguir com esse método, certifique-se sempre de que seu frontend não tenha nenhuma vulnerabilidade XSS.</b> A chave é criptografada para fornecer proteção adicional, mas não estará segura em um cenário de XSS.
+
+## Images
+
+![Alt login](image https://i.imgur.com/xiDfD4D.png)
+![Alt signup](image https://i.imgur.com/cDopcom.png)
+![Alt dashboard](image https://i.imgur.com/mqhQBqg.png)
+![Alt change password](image https://i.imgur.com/mvIM0q1.png)
